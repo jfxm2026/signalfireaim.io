@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Inter:wght@600;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Badge background -->
+  <rect x="0" y="0" width="400" height="120" rx="12" fill="#ffffff"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="6" height="120" rx="3" fill="#E8334A"/>
+
+  <!-- Flame icon mark -->
+  <g transform="translate(28, 18)">
+    <!-- Outer flame -->
+    <path d="M21 0 C21 0 28 10 28 20 C28 28 22 35 14 35 C6 35 0 28 0 20 C0 12 5 6 10 2 C10 2 8 12 14 16 C14 16 12 8 21 0Z" 
+          fill="#E8334A" opacity="0.15"/>
+    <!-- Inner flame -->
+    <path d="M18 8 C18 8 23 15 23 22 C23 27 19 32 14 32 C9 32 5 27 5 22 C5 17 8 13 11 10 C11 10 10 17 14 20 C14 20 13 13 18 8Z" 
+          fill="#E8334A" opacity="0.5"/>
+    <!-- Core flame -->
+    <path d="M15 16 C15 16 19 21 19 25 C19 28 17 31 14 31 C11 31 9 28 9 25 C9 22 11 19 13 17 C13 17 12 21 14 23 C14 23 13 19 15 16Z" 
+          fill="#E8334A"/>
+  </g>
+
+  <!-- Wordmark -->
+  <!-- SIGNAL -->
+  <text x="78" y="52" 
+        font-family="Georgia, 'Times New Roman', serif" 
+        font-size="22" 
+        font-weight="700"
+        letter-spacing="3"
+        fill="#1f1f1f">SIGNAL</text>
+
+  <!-- FIRE — red italic -->
+  <text x="78" y="80" 
+        font-family="Georgia, 'Times New Roman', serif" 
+        font-size="22" 
+        font-weight="700"
+        font-style="italic"
+        letter-spacing="3"
+        fill="#E8334A">FIRE</text>
+
+  <!-- AIM -->
+  <text x="78" y="108" 
+        font-family="Georgia, 'Times New Roman', serif" 
+        font-size="22" 
+        font-weight="700"
+        letter-spacing="3"
+        fill="#1f1f1f">AIM</text>
+
+  <!-- Vertical divider -->
+  <line x1="205" y1="20" x2="205" y2="100" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- Right side — domain + tagline -->
+  <text x="222" y="50" 
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+        font-size="11" 
+        font-weight="700"
+        letter-spacing="1.5"
+        fill="#b0b0b0">signalfireaim.io</text>
+
+  <text x="222" y="72" 
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+        font-size="10.5"
+        font-weight="400"
+        fill="#888888">GTM Intelligence</text>
+
+  <text x="222" y="88" 
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" 
+        font-size="10.5"
+        font-weight="400"
+        fill="#888888">for the Agentic Era</text>
+</svg>
