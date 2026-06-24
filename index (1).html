@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="SignalFireAim favicon v2.svg">
+<link rel="shortcut icon" href="SignalFireAim favicon v2.svg">
+  <title>Signal Fire Aim — GTM Intelligence for the Agentic Era</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --red:         #E8334A;
+    --red-hover:   #cc2a3e;
+    --red-tint:    #fff8f9;
+    --red-border:  rgba(232,51,74,0.12);
+
+    --text:        #222222;
+    --text-mid:    #707070;
+    --text-light:  #b0b0b0;
+
+    --bg:          #ffffff;
+    --bg-off:      #fdfdfd;
+    --bg-section:  #f8f8f8;
+
+    --border:      #f2f2f2;
+    --border-mid:  #e8e8e8;
+
+    --shadow:      0 1px 16px rgba(0,0,0,0.05);
+    --shadow-md:   0 2px 24px rgba(0,0,0,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    height: 58px;
+  }
+
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 2.5rem;
+    height: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; letter-spacing: -0.02em;
+    color: var(--text); cursor: pointer; user-select: none;
+  }
+
+  .nav-logo .fire { color: var(--red); font-style: italic; }
+
+  .nav-links {
+    display: flex; gap: 0.15rem; list-style: none; align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--text-light); text-decoration: none;
+    padding: 0.4rem 0.9rem; border-radius: 6px;
+    transition: color 0.15s, background 0.15s; cursor: pointer;
+  }
+
+  .nav-links a:hover { color: var(--text); background: var(--bg-section); }
+  .nav-links a.active { color: var(--text); font-weight: 600; }
+
+  .nav-cta {
+    background: var(--red) !important; color: white !important;
+    font-weight: 600 !important; border-radius: 6px !important;
+    margin-left: 0.6rem;
+  }
+  .nav-cta:hover { background: var(--red-hover) !important; }
+
+  /* ── SHARED ── */
+  .wrap {
+    max-width: 1100px; margin: 0 auto; padding: 0 2.5rem;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--red);
+    padding: 0.2rem 0.65rem;
+    background: var(--red-tint);
+    border: 1px solid var(--red-border);
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    display: inline-block; padding: 0.68rem 1.5rem;
+    border-radius: 7px; font-size: 0.86rem; font-weight: 600;
+    text-decoration: none; transition: all 0.15s;
+    cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+  }
+
+  .btn-red { background: var(--red); color: white; }
+  .btn-red:hover { background: var(--red-hover); transform: translateY(-1px); box-shadow: var(--shadow); }
+
+  .btn-outline {
+    background: transparent; color: var(--text-mid);
+    border: 1.5px solid var(--border-mid);
+  }
+  .btn-outline:hover { color: var(--text); border-color: #ccc; }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); }
+
+  /* ── HERO BANNER — centered full-width ── */
+  .hero-banner {
+    padding: 100px 2.5rem 56px;
+    text-align: center;
+    background: var(--bg);
+  }
+
+  .hero-banner h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.6rem; line-height: 1.1;
+    letter-spacing: -0.025em; color: var(--text);
+    max-width: 780px; margin: 1rem auto 1.4rem;
+  }
+
+  .hero-banner h1 .fire { color: var(--red); font-style: italic; }
+
+  .hero-banner .sub {
+    font-size: 1rem; line-height: 1.75; color: var(--text-mid);
+    max-width: 520px; margin: 0 auto 2rem;
+  }
+
+  .hero-actions {
+    display: flex; gap: 0.85rem;
+    justify-content: center; align-items: center;
+  }
+
+  /* Signal card — sits below banner, full width constrained */
+  .signal-strip {
+    background: var(--bg-off);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+  }
+
+  .signal-strip-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr 1fr 1fr;
+    gap: 0; align-items: stretch;
+  }
+
+  .signal-label-col {
+    padding: 0 2rem 0 0;
+    border-right: 1px solid var(--border-mid);
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 140px;
+  }
+
+  .signal-tag {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red);
+    display: flex; align-items: center; gap: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .live-pip {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22c55e; animation: pip 2s ease infinite; flex-shrink: 0;
+  }
+
+  @keyframes pip { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .signal-label-col p {
+    font-size: 0.78rem; color: var(--text-mid); line-height: 1.4;
+  }
+
+  .signal-item {
+    padding: 0 1.5rem;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .signal-item:last-child { border-right: none; }
+
+  .sig-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--red); flex-shrink: 0; margin-top: 5px;
+  }
+
+  .signal-row { display: flex; gap: 0.6rem; align-items: flex-start; }
+
+  .signal-row p {
+    font-size: 0.82rem; line-height: 1.55; color: var(--text-mid);
+  }
+
+  .signal-row p strong { color: var(--text); font-weight: 600; }
+
+  /* ── LOGO STRIP ── */
+  .logo-strip {
+    padding: 1.1rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .logo-strip-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-light); margin-bottom: 0.8rem;
+  }
+
+  .logo-strip-row {
+    display: flex; justify-content: center;
+    gap: 2.8rem; flex-wrap: wrap; align-items: center;
+  }
+
+  .logo-pill {
+    font-size: 0.79rem; font-weight: 600;
+    color: var(--text-light); opacity: 0.5;
+  }
+
+  /* ── SECTIONS ── */
+  .section-wrap {
+    max-width: 1100px; margin: 0 auto; padding: 76px 2.5rem;
+  }
+
+  .section-wrap h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem; line-height: 1.2; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 1rem; max-width: 500px;
+  }
+
+  .lead {
+    font-size: 0.97rem; line-height: 1.75; color: var(--text-mid);
+    max-width: 540px; margin-bottom: 2.2rem;
+  }
+
+  /* ── BENTO ── */
+  .bento {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1rem; margin-top: 1.5rem;
+  }
+
+  .bento-card {
+    background: var(--bg-off); border: 1.5px solid var(--border);
+    border-radius: 11px; padding: 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .bento-card:hover {
+    border-color: var(--red-border);
+    box-shadow: 0 3px 14px rgba(232,51,74,0.06);
+  }
+
+  .bento-card.accent {
+    grid-column: span 2;
+    background: var(--red-tint); border-color: var(--red-border);
+  }
+
+  .bento-stat {
+    font-size: 2.5rem; font-weight: 700; color: var(--red);
+    line-height: 1; margin-bottom: 0.3rem;
+  }
+
+  .bento-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem;
+  }
+
+  .bento-text { font-size: 0.85rem; line-height: 1.65; color: var(--text-mid); }
+
+  .bento-card.accent .bento-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; color: var(--text); line-height: 1.35; margin-bottom: 0.6rem;
+  }
+
+  /* ── BEATS ── */
+  .beats {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    border: 1.5px solid var(--border); border-radius: 11px;
+    overflow: hidden; margin-top: 2rem;
+  }
+
+  .beat {
+    padding: 1.65rem; border-right: 1px solid var(--border); background: var(--bg);
+  }
+  .beat:last-child { border-right: none; }
+
+  .beat-tag {
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 0.65rem;
+  }
+
+  .beat-bar { width: 22px; height: 2px; background: var(--red); border-radius: 2px; margin-bottom: 0.9rem; }
+
+  .beat h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--text); margin-bottom: 0.6rem; line-height: 1.3;
+  }
+
+  .beat p { font-size: 0.84rem; line-height: 1.65; color: var(--text-mid); }
+
+  /* ── ABOUT ── */
+  .about-strip {
+    background: var(--bg-section);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 76px 2.5rem;
+  }
+
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start;
+  }
+
+  .about-inner h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--text); line-height: 1.25;
+    letter-spacing: -0.02em; margin-bottom: 1.1rem;
+  }
+
+  .about-inner p { font-size: 0.92rem; line-height: 1.78; color: var(--text-mid); margin-bottom: 0.9rem; }
+
+  .pullquote {
+    border-left: 3px solid var(--red); padding: 0.65rem 1.1rem;
+    margin-top: 1.4rem; background: var(--red-tint); border-radius: 0 7px 7px 0;
+  }
+
+  .pullquote p { font-style: italic; color: var(--text) !important; margin-bottom: 0.3rem !important; font-size: 0.95rem !important; }
+  .pullquote cite { font-size: 0.73rem; color: var(--text-light); font-style: normal; }
+
+  .stat-cards { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .stat-card {
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 1.1rem 1.3rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--red-border); }
+  .stat-num { font-size: 1.75rem; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 0.81rem; color: var(--text-mid); line-height: 1.5; }
+
+  /* ── CTA ── */
+  .cta-wrap {
+    padding: 88px 2.5rem; text-align: center;
+    max-width: 600px; margin: 0 auto;
+  }
+
+  .cta-wrap h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.3rem; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 0.9rem; line-height: 1.2;
+  }
+
+  .cta-wrap h2 .fire { color: var(--red); font-style: italic; }
+  .cta-wrap p { font-size: 0.94rem; color: var(--text-mid); line-height: 1.72; margin-bottom: 1.75rem; }
+
+  .email-form { display: flex; gap: 0.6rem; max-width: 390px; margin: 0 auto; }
+
+  .email-input {
+    flex: 1; padding: 0.68rem 1rem;
+    border: 1.5px solid var(--border-mid); border-radius: 7px;
+    font-size: 0.86rem; font-family: 'Inter', sans-serif;
+    color: var(--text); background: var(--bg); outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input:focus { border-color: var(--red); }
+  .email-input::placeholder { color: var(--text-light); }
+  .cta-note { font-size: 0.72rem; color: var(--text-light); margin-top: 0.75rem; }
+
+  /* ── ARTICLES ── */
+  .articles-grid {
+    display: flex; flex-direction: column;
+    border: 1.5px solid var(--border); border-radius: 11px;
+    overflow: hidden; margin-top: 2rem;
+  }
+
+  .article-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+    padding: 1.4rem 1.65rem;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    align-items: start; cursor: pointer;
+    transition: background 0.15s; text-decoration: none; color: inherit;
+  }
+  .article-row:last-child { border-bottom: none; }
+  .article-row:hover { background: var(--bg-off); }
+
+  .article-tag {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 0.35rem;
+  }
+
+  .article-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem; color: var(--text); line-height: 1.35; margin-bottom: 0.4rem;
+  }
+
+  .article-desc { font-size: 0.83rem; color: var(--text-mid); line-height: 1.6; max-width: 560px; }
+
+  .article-meta { text-align: right; flex-shrink: 0; }
+  .article-date { font-size: 0.76rem; color: var(--text-light); margin-bottom: 0.45rem; white-space: nowrap; }
+
+  .article-platform {
+    display: inline-block; font-size: 0.66rem; font-weight: 600;
+    padding: 0.18rem 0.5rem; border-radius: 4px;
+    background: var(--bg-section); border: 1px solid var(--border-mid); color: var(--text-light);
+  }
+  .article-platform.substack { background: var(--red-tint); border-color: var(--red-border); color: var(--red); }
+  .article-platform.linkedin { background: #f0f7ff; border-color: #c8dff7; color: #2563eb; }
+
+  .articles-cta {
+    margin-top: 1.75rem; padding: 1.4rem 1.5rem;
+    background: var(--bg-section); border: 1.5px solid var(--border); border-radius: 11px;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .articles-cta p { font-size: 0.87rem; color: var(--text-mid); line-height: 1.5; }
+  .articles-cta strong { color: var(--text); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2.2rem; align-items: start;
+  }
+
+  .contact-card {
+    background: var(--bg-off); border: 1.5px solid var(--border);
+    border-radius: 11px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .contact-card:hover { border-color: var(--red-border); box-shadow: 0 3px 16px rgba(232,51,74,0.06); }
+
+  .contact-card-top { height: 2px; background: var(--red); }
+  .contact-card-body { padding: 1.5rem 1.65rem; }
+
+  .contact-card-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--red-tint); border: 1px solid var(--red-border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.9rem; font-size: 1rem;
+  }
+
+  .contact-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem; color: var(--text); margin-bottom: 0.45rem;
+  }
+
+  .contact-card p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.1rem; }
+
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.83rem; font-weight: 600; color: var(--red);
+    text-decoration: none; padding: 0.5rem 1rem;
+    background: var(--red-tint); border: 1.5px solid var(--red-border);
+    border-radius: 6px; transition: all 0.15s;
+  }
+  .contact-link:hover { background: var(--red); color: white; border-color: var(--red); }
+
+  .contact-link.secondary {
+    background: var(--bg-section); border-color: var(--border-mid); color: var(--text-mid);
+  }
+  .contact-link.secondary:hover { background: var(--text); color: white; border-color: var(--text); }
+
+  .quick-links {
+    grid-column: span 2; background: var(--bg-section);
+    border: 1.5px solid var(--border); border-radius: 11px; padding: 1.5rem 1.65rem;
+  }
+
+  .quick-links h3 {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem;
+  }
+
+  .quick-links-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.65rem; }
+
+  .quick-pill {
+    display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+    padding: 0.6rem 0.5rem; background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 7px; font-size: 0.81rem; font-weight: 600;
+    color: var(--text-mid); text-decoration: none; transition: all 0.15s; cursor: pointer;
+  }
+  .quick-pill:hover { border-color: var(--red-border); color: var(--red); background: var(--red-tint); }
+
+  .contact-note {
+    grid-column: span 2; text-align: center; padding: 0.75rem;
+    font-size: 0.78rem; color: var(--text-light); line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-section); border-top: 1px solid var(--border); padding: 1.75rem 2.5rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--text); }
+  .footer-logo .fire { color: var(--red); font-style: italic; }
+
+  .footer-links { display: flex; gap: 1.75rem; list-style: none; }
+  .footer-links a { font-size: 0.78rem; color: var(--text-light); text-decoration: none; transition: color 0.15s; cursor: pointer; }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy { font-size: 0.74rem; color: var(--text-light); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-banner h1 { font-size: 2.3rem; }
+    .signal-strip-inner { grid-template-columns: 1fr; gap: 1rem; }
+    .signal-label-col { border-right: none; border-bottom: 1px solid var(--border-mid); padding: 0 0 1rem; }
+    .signal-item { border-right: none; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+    .signal-item:last-child { border-bottom: none; }
+    .bento { grid-template-columns: 1fr; }
+    .bento-card.accent { grid-column: span 1; }
+    .beats { grid-template-columns: 1fr; }
+    .beat { border-right: none; border-bottom: 1px solid var(--border); }
+    .beat:last-child { border-bottom: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .email-form { flex-direction: column; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .quick-links { grid-column: span 1; }
+    .contact-note { grid-column: span 1; }
+    .quick-links-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    .articles-cta { flex-direction: column; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .nav-links li.hide-mobile { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .nav-links li:nth-child(1) a,
+    .nav-links li:nth-child(2) a,
+    .nav-links li:nth-child(3) a { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">Signal <span class="fire">Fire</span> Aim</div>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a onclick="showPage('articles')" id="nav-articles">Articles</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+      <li><a href="https://agenticatlarge.substack.com" target="_blank" onclick="showPage('home')" class="nav-cta">Get the Brief</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO BANNER — centered -->
+  <div class="hero-banner">
+    <div class="eyebrow">GTM Intelligence · Agentic Era</div>
+    <h1>Every crisis surfaces the people<br>who saw it <span class="fire">coming.</span></h1>
+    <p class="sub">Signal Fire Aim is where identity, AI governance, and enterprise GTM collide — for CISOs, CIOs, and the people selling to them. Before the incident, not after.</p>
+    <div class="hero-actions">
+      <a href="https://agenticatlarge.substack.com" target="_blank" class="btn btn-red">Get the Weekly Brief</a>
+      <a onclick="showPage('articles')" class="btn btn-outline">Read the Articles →</a>
+    </div>
+  </div>
+
+  <!-- SIGNAL STRIP — full width, three signals in columns -->
+  <div class="signal-strip">
+    <div class="signal-strip-inner">
+      <div class="signal-label-col">
+        <div class="signal-tag"><div class="live-pip"></div>This Week's Signal</div>
+        <p>Updated June 24, 2026<br>Agentic At Large</p>
+      </div>
+      <div class="signal-item">
+        <div class="signal-row">
+          <div class="sig-dot"></div>
+          <p><strong>Rubrik Agent Cloud for Anthropic Claude Code launched June 23.</strong> Agent Rewind, SAGE governance engine, full audit trail for Claude deployments — now GA.</p>
+        </div>
+      </div>
+      <div class="signal-item">
+        <div class="signal-row">
+          <div class="sig-dot"></div>
+          <p><strong>86% of IT leaders</strong> expect AI agents to outpace their security guardrails within 12 months. Only 23% have full visibility into agents operating in their environments today. Source: Rubrik Zero Labs.</p>
+        </div>
+      </div>
+      <div class="signal-item">
+        <div class="signal-row">
+          <div class="sig-dot"></div>
+          <p><strong>OpenAI and Anthropic both racing</strong> to embed frontier AI into enterprise security — Rubrik is now integrated with both. The agentic governance arms race just went public.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO STRIP -->
+  <div class="logo-strip">
+    <div class="logo-strip-label">The landscape this covers</div>
+    <div class="logo-strip-row">
+      <span class="logo-pill">Rubrik</span>
+      <span class="logo-pill">Strata Identity</span>
+      <span class="logo-pill">Anthropic</span>
+      <span class="logo-pill">Okta</span>
+      <span class="logo-pill">Microsoft Entra</span>
+      <span class="logo-pill">CrowdStrike</span>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="section-wrap" id="problem">
+    <div class="eyebrow">The Problem</div>
+    <h2>The identity layer is the last thing enterprises fix.</h2>
+    <p class="lead">It's also the first thing attackers target. Most organizations are one compromised IdP away from total auth failure — and their AI agents make the blast radius 10x worse.</p>
+    <div class="bento">
+      <div class="bento-card">
+        <div class="bento-stat">90%</div>
+        <div class="bento-label">Top concern</div>
+        <div class="bento-text">of IT and security leaders cite identity-driven attacks as their primary threat. Source: Rubrik Zero Labs.</div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-stat">4%</div>
+        <div class="bento-label">Creating real value</div>
+        <div class="bento-text">of companies are generating substantial AI value. The gap isn't the model — it's the governance layer underneath.</div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-stat">10:1</div>
+        <div class="bento-label">Machine to human</div>
+        <div class="bento-text">Ratio of AI agent identities to human identities in enterprise environments. Most have zero governance.</div>
+      </div>
+      <div class="bento-card accent">
+        <div class="bento-label">The Gap No One Is Solving</div>
+        <div class="bento-title">Traditional IAM visibility does not extend across AI agent delegation chains.</div>
+        <div class="bento-text">When an AI agent calls another agent, which calls a third-party API, which touches your customer database — you have no visibility. Most organizations pick one of two broken strategies: lock everything down and kill AI value, or hope nothing breaks. The third option is identity continuity.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FRAMEWORK -->
+  <div class="section-wrap" id="framework">
+    <div class="eyebrow">The Framework</div>
+    <h2>Three beats. One thesis.</h2>
+    <p class="lead">Every piece of intelligence from Signal Fire Aim follows the same pattern — the problem, the shift, and why the window is now.</p>
+    <div class="beats">
+      <div class="beat">
+        <div class="beat-tag">01 — Signal</div>
+        <div class="beat-bar"></div>
+        <h3>Identity breaks. Everything stops.</h3>
+        <p>When the IdP goes down, authentication stops. Revenue stops. Operations stop. Manual failover takes hours. AI agents make the blast radius catastrophic.</p>
+      </div>
+      <div class="beat">
+        <div class="beat-tag">02 — Fire</div>
+        <div class="beat-bar"></div>
+        <h3>Continuity is the new category.</h3>
+        <p>Rubrik + Strata redefines identity from a security problem to a resilience problem. Identity Continuity means auth never stops. Identity Roll Forward means clean recovery, not a stale rollback.</p>
+      </div>
+      <div class="beat">
+        <div class="beat-tag">03 — Aim</div>
+        <div class="beat-bar"></div>
+        <h3>AI agents are the forcing function.</h3>
+        <p>Every enterprise deploying AI creates non-human identities at scale. Rubrik Agent Cloud governs them. The announcement is coming. The organizations ready for it will be the 4%.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-strip">
+    <div class="about-inner">
+      <div>
+        <div class="eyebrow">About</div>
+        <h2>Written by someone who saw this coming eight months ago.</h2>
+        <p>Signal Fire Aim is the GTM intelligence layer for the agentic era — covering identity governance, AI security, and enterprise technology for CISOs, CIOs, and the people selling to them.</p>
+        <p>Published by James Murphy under the Agentic At Large brand. Eight months tracking Strata Identity, Maverics, and the non-human identity explosion before the Rubrik acquisition made it enterprise news.</p>
+        <div class="pullquote">
+          <p>"Every crisis eventually surfaces the people who saw it coming."</p>
+          <cite>— The Signal Fire Aim editorial thesis</cite>
+        </div>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-num">8mo</div>
+          <div class="stat-label">Tracking the identity governance story before Rubrik made it news</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">CISO</div>
+          <div class="stat-label">Primary audience — CIOs, boards, and enterprise buyers evaluating agentic AI governance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">60/30/10</div>
+          <div class="stat-label">60% value, 30% story, 10% direction. Never a pitch. Always a perspective.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap" id="subscribe">
+    <div class="eyebrow">Weekly Intelligence</div>
+    <h2>Get the signal before the <span class="fire">fire.</span></h2>
+    <p>Identity, AI governance, and enterprise GTM — for the people who need to be right about this before it's news.</p>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="your@email.com">
+      <a href="https://agenticatlarge.substack.com" target="_blank" class="btn btn-red">Subscribe Free</a>
+    </div>
+    <p class="cta-note">No ads. No fluff. Links always in the comments.</p>
+  </div>
+
+</div><!-- /home -->
+
+
+<!-- ══════════════ ARTICLES ══════════════ -->
+<div id="page-articles" class="page">
+  <div class="section-wrap" style="padding-top:90px;">
+    <div class="eyebrow">Published Work</div>
+    <h2 style="font-size:2.4rem; max-width:none;">The <span style="color:var(--red); font-style:italic; font-family:'DM Serif Display',serif;">Archive</span></h2>
+    <p class="lead">Every article, post, and brief from Agentic At Large and Signal Fire Aim. Updated as new pieces publish.</p>
+
+    <div class="articles-grid">
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Identity · Governance</div>
+          <div class="article-title">The Identity Plumbers AI Desperately Needs</div>
+          <div class="article-desc">The people who built SAML and modern IAM didn't just write specs — they solved the exact governance problem now crippling AI deployments. A deep dive into delegation chains, trust boundaries, and why Eve Maler and Eric Olden's work matters more than ever.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">June 2026</div>
+          <div class="article-platform linkedin">LinkedIn</div>
+        </div>
+      </a>
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">AI Governance · Enterprise</div>
+          <div class="article-title">You Bought the Ferrari. Now Where's the Gas?</div>
+          <div class="article-desc">BCG says 70% of AI value comes from people and process, not technology. Anthropic just rewrote Claude's entire constitution around principles, not rules. Both are pointing at the same missing layer: governance infrastructure.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">June 2026</div>
+          <div class="article-platform substack">Substack</div>
+        </div>
+      </a>
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Acquisition · Identity</div>
+          <div class="article-title">Rubrik Acquires Strata: Identity Continuity is Now Infrastructure</div>
+          <div class="article-desc">On June 9, 2026, Rubrik announced the acquisition of Strata Identity at FORWARD. Maverics becomes Identity Continuity. Identity Roll Forward is industry-first. Here's what it means for every enterprise deploying AI agents.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">June 2026</div>
+          <div class="article-platform substack">Substack</div>
+        </div>
+      </a>
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Thought Leadership · SAML</div>
+          <div class="article-title">Two for Tuesday: The Co-Inventors of SAML Are Still the Smartest People in the Room</div>
+          <div class="article-desc">Eve Maler and Eric Olden didn't just write a standard — they anticipated how trust would need to travel across systems that don't share a perimeter. Twenty years later, that problem just got 10x harder.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">May 2026</div>
+          <div class="article-platform linkedin">LinkedIn</div>
+        </div>
+      </a>
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Sovereignty · AI Infrastructure</div>
+          <div class="article-title">Sovereign AI: Why the Air-Gap Is the New Perimeter</div>
+          <div class="article-desc">Defense, healthcare, and financial enterprises can't put their AI in the cloud. The sovereignty layer isn't a compliance checkbox — it's an architecture decision. How Maverics was purpose-built for environments where SaaS is not an option.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">April 2026</div>
+          <div class="article-platform substack">Substack</div>
+        </div>
+      </a>
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Non-Human Identity · Risk</div>
+          <div class="article-title">The 10:1 Problem: When Machines Outnumber Humans in Your IAM</div>
+          <div class="article-desc">AI agents now outnumber human identities roughly 10:1 in enterprise environments. Traditional IAM was built for humans. The governance gap isn't theoretical — it's already showing up in breach reports.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">March 2026</div>
+          <div class="article-platform linkedin">LinkedIn</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="articles-cta">
+      <p><strong>More on Substack.</strong> Full articles, weekly briefs, and the complete archive live at Agentic At Large. Subscribe free to get every piece in your inbox.</p>
+      <a href="https://agenticatlarge.substack.com" target="_blank" class="btn btn-red" style="white-space:nowrap;">Open Substack →</a>
+    </div>
+  </div>
+</div><!-- /articles -->
+
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div id="page-contact" class="page">
+  <div class="section-wrap" style="padding-top:90px;">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 style="font-size:2.4rem; max-width:none;">Let's <span style="color:var(--red); font-style:italic; font-family:'DM Serif Display',serif;">connect.</span></h2>
+    <p class="lead">For editorial inquiries, GTM partnerships, speaking, or a conversation about where AI governance is heading — reach out directly.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-top"></div>
+        <div class="contact-card-body">
+          <div class="contact-card-icon">✉️</div>
+          <h3>Email James directly</h3>
+          <p>The fastest path. For partnerships, editorial questions, speaking inquiries, or anything Rubrik + Strata related — this is the inbox that gets read.</p>
+          <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="contact-link">james@signalfireaim.io</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-top"></div>
+        <div class="contact-card-body">
+          <div class="contact-card-icon">💼</div>
+          <h3>Connect on LinkedIn</h3>
+          <p>Follow for daily posts, the 60/30/10 takes on identity and AI governance, and the content that doesn't make it to the newsletter. Articles drop here first.</p>
+          <a href="https://linkedin.com/in/agenticmurphy" target="_blank" class="contact-link secondary">View LinkedIn Profile →</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-top"></div>
+        <div class="contact-card-body">
+          <div class="contact-card-icon">📬</div>
+          <h3>Subscribe on Substack</h3>
+          <p>Agentic At Large — the weekly brief on identity governance, AI security, and enterprise GTM. Free. No ads. Links in the comments, never the body.</p>
+          <a href="https://agenticatlarge.substack.com" target="_blank" class="contact-link secondary">Open Substack →</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-top"></div>
+        <div class="contact-card-body">
+          <div class="contact-card-icon">🔥</div>
+          <h3>Signal Fire Aim LLC</h3>
+          <p>GTM intelligence, content strategy, and thought leadership for the agentic era. Based in Connecticut. Covering Rubrik, Strata Identity, Anthropic, and the enterprise security landscape.</p>
+          <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="contact-link">Work with James →</a>
+        </div>
+      </div>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <div class="quick-links-grid">
+          <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="quick-pill">✉️ Send Email</a>
+          <a href="https://agenticatlarge.substack.com" target="_blank" class="quick-pill">📬 Substack</a>
+          <a href="https://linkedin.com/in/agenticmurphy" target="_blank" class="quick-pill">💼 LinkedIn</a>
+          <a onclick="showPage('articles')" class="quick-pill">📄 Articles</a>
+        </div>
+      </div>
+      <div class="contact-note">
+        Response time is typically within one business day.<br>
+        For urgent GTM or editorial inquiries, email is always fastest.
+      </div>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Signal <span class="fire">Fire</span> Aim</div>
+    <ul class="footer-links">
+      <li><a href="https://agenticatlarge.substack.com" target="_blank">Substack</a></li>
+      <li><a href="https://linkedin.com/in/agenticmurphy" target="_blank">LinkedIn</a></li>
+      <li><a onclick="showPage('articles')">Articles</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 James Murphy · Signal Fire Aim LLC</div>
+  </div>
+</footer>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
