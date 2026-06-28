@@ -3,26 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14.5' fill='none' stroke='%23E8334A' stroke-width='1.8'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23E8334A' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23E8334A'/%3E%3Cline x1='1.5' y1='16' x2='8' y2='16' stroke='%23E8334A' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='24' y1='16' x2='30.5' y2='16' stroke='%23E8334A' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='16' y1='1.5' x2='16' y2='8' stroke='%23E8334A' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='16' y1='24' x2='16' y2='30.5' stroke='%23E8334A' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E">
-<title>Signal Fire Aim — GTM Intelligence for the Agentic Era</title>
+<link rel="icon" type="image/svg+xml" href="SignalFireAim favicon v2.svg">
+<link rel="shortcut icon" href="SignalFireAim favicon v2.svg">
+  <title>Signal Fire Aim — GTM Intelligence for the Agentic Era</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 
   :root {
-    --red:        #E8334A;
-    --red-hover:  #cc2a3e;
-    --red-tint:   #fff8f9;
-    --red-border: rgba(232,51,74,0.12);
-    --text:       #222222;
-    --text-mid:   #707070;
-    --text-light: #b0b0b0;
-    --bg:         #ffffff;
-    --bg-off:     #fdfdfd;
-    --bg-section: #f8f8f8;
-    --border:     #f2f2f2;
-    --border-mid: #e8e8e8;
-    --shadow:     0 1px 16px rgba(0,0,0,0.05);
-    --shadow-md:  0 2px 24px rgba(0,0,0,0.07);
+    --red:         #E8334A;
+    --red-hover:   #cc2a3e;
+    --red-tint:    #fff8f9;
+    --red-border:  rgba(232,51,74,0.12);
+
+    --text:        #222222;
+    --text-mid:    #707070;
+    --text-light:  #b0b0b0;
+
+    --bg:          #ffffff;
+    --bg-off:      #fdfdfd;
+    --bg-section:  #f8f8f8;
+
+    --border:      #f2f2f2;
+    --border-mid:  #e8e8e8;
+
+    --shadow:      0 1px 16px rgba(0,0,0,0.05);
+    --shadow-md:   0 2px 24px rgba(0,0,0,0.07);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,23 +54,18 @@
 
   .nav-inner {
     max-width: 1100px; margin: 0 auto;
-    padding: 0 2.5rem; height: 100%;
+    padding: 0 2.5rem;
+    height: 100%;
     display: flex; align-items: center; justify-content: space-between;
   }
 
   .nav-logo {
-    display: flex; align-items: center; gap: 0.6rem;
-    cursor: pointer; user-select: none; text-decoration: none;
-  }
-
-  .nav-logo-mark svg { display: block; }
-
-  .nav-logo-text {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text);
+    font-size: 1.2rem; letter-spacing: -0.02em;
+    color: var(--text); cursor: pointer; user-select: none;
   }
 
-  .nav-logo-text .fire { color: var(--red); font-style: italic; }
+  .nav-logo .fire { color: var(--red); font-style: italic; }
 
   .nav-links {
     display: flex; gap: 0.15rem; list-style: none; align-items: center;
@@ -89,6 +89,10 @@
   .nav-cta:hover { background: var(--red-hover) !important; }
 
   /* ── SHARED ── */
+  .wrap {
+    max-width: 1100px; margin: 0 auto; padding: 0 2.5rem;
+  }
+
   .eyebrow {
     display: inline-block;
     font-size: 0.67rem; font-weight: 700; letter-spacing: 0.13em;
@@ -118,23 +122,11 @@
 
   hr.divider { border: none; border-top: 1px solid var(--border); }
 
-  /* ── HERO ── */
+  /* ── HERO BANNER — centered full-width ── */
   .hero-banner {
-    padding: 110px 2.5rem 56px;
+    padding: 100px 2.5rem 56px;
     text-align: center;
     background: var(--bg);
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Subtle hero crosshair watermark */
-  .hero-bg-mark {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    opacity: 0.025;
-    pointer-events: none;
   }
 
   .hero-banner h1 {
@@ -142,7 +134,6 @@
     font-size: 3.6rem; line-height: 1.1;
     letter-spacing: -0.025em; color: var(--text);
     max-width: 780px; margin: 1rem auto 1.4rem;
-    position: relative;
   }
 
   .hero-banner h1 .fire { color: var(--red); font-style: italic; }
@@ -150,22 +141,14 @@
   .hero-banner .sub {
     font-size: 1rem; line-height: 1.75; color: var(--text-mid);
     max-width: 520px; margin: 0 auto 2rem;
-    position: relative;
   }
 
   .hero-actions {
     display: flex; gap: 0.85rem;
     justify-content: center; align-items: center;
-    position: relative;
   }
 
-  /* ── HERO MARK ── */
-  .hero-mark {
-    display: flex; justify-content: center;
-    margin-bottom: 1.5rem; position: relative;
-  }
-
-  /* ── SIGNAL STRIP ── */
+  /* Signal card — sits below banner, full width constrained */
   .signal-strip {
     background: var(--bg-off);
     border-top: 1px solid var(--border);
@@ -200,13 +183,16 @@
 
   @keyframes pip { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  .signal-label-col p { font-size: 0.78rem; color: var(--text-mid); line-height: 1.4; }
+  .signal-label-col p {
+    font-size: 0.78rem; color: var(--text-mid); line-height: 1.4;
+  }
 
   .signal-item {
     padding: 0 1.5rem;
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column; justify-content: center;
   }
+
   .signal-item:last-child { border-right: none; }
 
   .sig-dot {
@@ -215,7 +201,11 @@
   }
 
   .signal-row { display: flex; gap: 0.6rem; align-items: flex-start; }
-  .signal-row p { font-size: 0.82rem; line-height: 1.55; color: var(--text-mid); }
+
+  .signal-row p {
+    font-size: 0.82rem; line-height: 1.55; color: var(--text-mid);
+  }
+
   .signal-row p strong { color: var(--text); font-weight: 600; }
 
   /* ── LOGO STRIP ── */
@@ -456,7 +446,7 @@
     width: 36px; height: 36px; border-radius: 8px;
     background: var(--red-tint); border: 1px solid var(--red-border);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.9rem; font-size: 1rem;
   }
 
   .contact-card h3 {
@@ -515,11 +505,7 @@
     display: flex; justify-content: space-between; align-items: center;
   }
 
-  .footer-logo {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--text);
-    cursor: pointer;
-  }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--text); }
   .footer-logo .fire { color: var(--red); font-style: italic; }
 
   .footer-links { display: flex; gap: 1.75rem; list-style: none; }
@@ -527,9 +513,6 @@
   .footer-links a:hover { color: var(--text); }
 
   .footer-copy { font-size: 0.74rem; color: var(--text-light); }
-
-  /* ── CROSSHAIR SVG COMPONENT ── */
-  .crosshair-mark { display: inline-block; flex-shrink: 0; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -557,39 +540,23 @@
 
   @media (max-width: 480px) {
     .nav-links a:not(.nav-cta) { display: none; }
+    .nav-links li:nth-child(1) a,
+    .nav-links li:nth-child(2) a,
+    .nav-links li:nth-child(3) a { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── INLINE SVG MARK — reusable via JS ── -->
-<!-- We define the crosshair mark as an inline template and stamp it where needed -->
-
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo" onclick="showPage('home')">
-      <span class="nav-logo-mark crosshair-mark">
-        <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="5"/>
-          <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="4"/>
-          <circle cx="50" cy="50" r="7" fill="#E8334A"/>
-          <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="5" stroke-linecap="round"/>
-          <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="5" stroke-linecap="round"/>
-          <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="5" stroke-linecap="round"/>
-          <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="5" stroke-linecap="round"/>
-          <line x1="29" y1="50" x2="29" y2="41" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-          <line x1="71" y1="50" x2="71" y2="41" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-          <line x1="50" y1="29" x2="59" y2="29" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-          <line x1="50" y1="71" x2="59" y2="71" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="nav-logo-text">Signal <span class="fire">Fire</span> Aim</span>
-    </div>
+    <div class="nav-logo" onclick="showPage('home')">Signal <span class="fire">Fire</span> Aim</div>
     <ul class="nav-links">
       <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
       <li><a onclick="showPage('articles')" id="nav-articles">Articles</a></li>
       <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
-      <li><a href="https://agenticatlarge.substack.com" target="_blank" class="nav-cta">Get the Brief</a></li>
+      <li><a href="https://agenticatlarge.substack.com" target="_blank" onclick="showPage('home')" class="nav-cta">Get the Brief</a></li>
     </ul>
   </div>
 </nav>
@@ -598,37 +565,9 @@
 <!-- ══════════════ HOME ══════════════ -->
 <div id="page-home" class="page active">
 
+  <!-- HERO BANNER — centered -->
   <div class="hero-banner">
-    <!-- Background watermark crosshair -->
-    <svg class="hero-bg-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="50" cy="50" r="46" stroke="#E8334A" stroke-width="1"/>
-      <circle cx="50" cy="50" r="28" stroke="#E8334A" stroke-width="1"/>
-      <circle cx="50" cy="50" r="5" fill="#E8334A"/>
-      <line x1="0" y1="50" x2="22" y2="50" stroke="#E8334A" stroke-width="1"/>
-      <line x1="78" y1="50" x2="100" y2="50" stroke="#E8334A" stroke-width="1"/>
-      <line x1="50" y1="0" x2="50" y2="22" stroke="#E8334A" stroke-width="1"/>
-      <line x1="50" y1="78" x2="50" y2="100" stroke="#E8334A" stroke-width="1"/>
-    </svg>
-
     <div class="eyebrow">GTM Intelligence · Agentic Era</div>
-
-    <!-- Hero mark -->
-    <div class="hero-mark">
-      <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="4"/>
-        <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="3"/>
-        <circle cx="50" cy="50" r="7" fill="#E8334A"/>
-        <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="29" y1="50" x2="29" y2="41" stroke="#E8334A" stroke-width="3" stroke-linecap="round"/>
-        <line x1="71" y1="50" x2="71" y2="41" stroke="#E8334A" stroke-width="3" stroke-linecap="round"/>
-        <line x1="50" y1="29" x2="59" y2="29" stroke="#E8334A" stroke-width="3" stroke-linecap="round"/>
-        <line x1="50" y1="71" x2="59" y2="71" stroke="#E8334A" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </div>
-
     <h1>Every crisis surfaces the people<br>who saw it <span class="fire">coming.</span></h1>
     <p class="sub">Signal Fire Aim is where identity, AI governance, and enterprise GTM collide — for CISOs, CIOs, and the people selling to them. Before the incident, not after.</p>
     <div class="hero-actions">
@@ -637,29 +576,29 @@
     </div>
   </div>
 
-  <!-- SIGNAL STRIP -->
+  <!-- SIGNAL STRIP — full width, three signals in columns -->
   <div class="signal-strip">
     <div class="signal-strip-inner">
       <div class="signal-label-col">
         <div class="signal-tag"><div class="live-pip"></div>This Week's Signal</div>
-        <p>Updated June 24, 2026<br>Agentic At Large</p>
+        <p>Updated June 28, 2026<br>Agentic At Large</p>
       </div>
       <div class="signal-item">
         <div class="signal-row">
           <div class="sig-dot"></div>
-          <p><strong>Rubrik Agent Cloud for Anthropic Claude Code launched June 23.</strong> Agent Rewind, SAGE governance engine, full audit trail for Claude deployments — now GA.</p>
+          <p><strong>The grid is moving to the edge.</strong> 75% of enterprise-managed data is now created and processed outside traditional data centers. The perimeter didn't blur — it dissolved.</p>
         </div>
       </div>
       <div class="signal-item">
         <div class="signal-row">
           <div class="sig-dot"></div>
-          <p><strong>86% of IT leaders</strong> expect AI agents to outpace their security guardrails within 12 months. Only 23% have full visibility into agents operating in their environments today. Source: Rubrik Zero Labs.</p>
+          <p><strong>Cohere + Aleph Alpha announce transatlantic merger</strong> backed by $600M from Schwarz Group — targeting a $600B sovereign AI market. Nations are buying AI the way they buy power grids.</p>
         </div>
       </div>
       <div class="signal-item">
         <div class="signal-row">
           <div class="sig-dot"></div>
-          <p><strong>OpenAI and Anthropic both racing</strong> to embed frontier AI into enterprise security — Rubrik is now integrated with both. The agentic governance arms race just went public.</p>
+          <p><strong>88% of organizations</strong> expect AI agents to outpace their security guardrails within a year. Only 22% have full visibility into agents in their environments — and that number is probably an overestimate. Source: Rubrik Zero Labs.</p>
         </div>
       </div>
     </div>
@@ -769,20 +708,6 @@
   <!-- CTA -->
   <div class="cta-wrap" id="subscribe">
     <div class="eyebrow">Weekly Intelligence</div>
-
-    <!-- Small crosshair mark above CTA heading -->
-    <div style="display:flex; justify-content:center; margin-bottom:1.2rem; opacity:0.18;">
-      <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="4"/>
-        <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="3"/>
-        <circle cx="50" cy="50" r="7" fill="#E8334A"/>
-        <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-        <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="4" stroke-linecap="round"/>
-      </svg>
-    </div>
-
     <h2>Get the signal before the <span class="fire">fire.</span></h2>
     <p>Identity, AI governance, and enterprise GTM — for the people who need to be right about this before it's news.</p>
     <div class="email-form">
@@ -803,6 +728,17 @@
     <p class="lead">Every article, post, and brief from Agentic At Large and Signal Fire Aim. Updated as new pieces publish.</p>
 
     <div class="articles-grid">
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Edge AI · Sovereign Infrastructure · Identity</div>
+          <div class="article-title">The Grid Is Moving. Who Controls the Edge?</div>
+          <div class="article-desc">Cohere, Rubrik, and a 25-year-old identity standard are all pointing at the same inflection point. The grid is moving to the edge. The model layer and the data layer have answers. The identity control plane doesn't — yet.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">June 2026</div>
+          <div class="article-platform substack">Substack</div>
+        </div>
+      </a>
       <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
         <div>
           <div class="article-tag">Identity · Governance</div>
@@ -890,17 +826,7 @@
       <div class="contact-card">
         <div class="contact-card-top"></div>
         <div class="contact-card-body">
-          <div class="contact-card-icon">
-            <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="7"/>
-              <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="5"/>
-              <circle cx="50" cy="50" r="8" fill="#E8334A"/>
-              <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <div class="contact-card-icon">✉️</div>
           <h3>Email James directly</h3>
           <p>The fastest path. For partnerships, editorial questions, speaking inquiries, or anything Rubrik + Strata related — this is the inbox that gets read.</p>
           <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="contact-link">james@signalfireaim.io</a>
@@ -909,17 +835,7 @@
       <div class="contact-card">
         <div class="contact-card-top"></div>
         <div class="contact-card-body">
-          <div class="contact-card-icon">
-            <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="7"/>
-              <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="5"/>
-              <circle cx="50" cy="50" r="8" fill="#E8334A"/>
-              <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <div class="contact-card-icon">💼</div>
           <h3>Connect on LinkedIn</h3>
           <p>Follow for daily posts, the 60/30/10 takes on identity and AI governance, and the content that doesn't make it to the newsletter. Articles drop here first.</p>
           <a href="https://linkedin.com/in/agenticmurphy" target="_blank" class="contact-link secondary">View LinkedIn Profile →</a>
@@ -928,17 +844,7 @@
       <div class="contact-card">
         <div class="contact-card-top"></div>
         <div class="contact-card-body">
-          <div class="contact-card-icon">
-            <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="7"/>
-              <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="5"/>
-              <circle cx="50" cy="50" r="8" fill="#E8334A"/>
-              <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <div class="contact-card-icon">📬</div>
           <h3>Subscribe on Substack</h3>
           <p>Agentic At Large — the weekly brief on identity governance, AI security, and enterprise GTM. Free. No ads. Links in the comments, never the body.</p>
           <a href="https://agenticatlarge.substack.com" target="_blank" class="contact-link secondary">Open Substack →</a>
@@ -947,17 +853,7 @@
       <div class="contact-card">
         <div class="contact-card-top"></div>
         <div class="contact-card-body">
-          <div class="contact-card-icon">
-            <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="7"/>
-              <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="5"/>
-              <circle cx="50" cy="50" r="8" fill="#E8334A"/>
-              <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-              <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="7" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <div class="contact-card-icon">🔥</div>
           <h3>Signal Fire Aim LLC</h3>
           <p>GTM intelligence, content strategy, and thought leadership for the agentic era. Based in Connecticut. Covering Rubrik, Strata Identity, Anthropic, and the enterprise security landscape.</p>
           <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="contact-link">Work with James →</a>
@@ -984,18 +880,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo" onclick="showPage('home')">
-      <svg width="20" height="20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="50" cy="50" r="44" stroke="#E8334A" stroke-width="6"/>
-        <circle cx="50" cy="50" r="25" stroke="#E8334A" stroke-width="4.5"/>
-        <circle cx="50" cy="50" r="7" fill="#E8334A"/>
-        <line x1="6" y1="50" x2="25" y2="50" stroke="#E8334A" stroke-width="6" stroke-linecap="round"/>
-        <line x1="75" y1="50" x2="94" y2="50" stroke="#E8334A" stroke-width="6" stroke-linecap="round"/>
-        <line x1="50" y1="6" x2="50" y2="25" stroke="#E8334A" stroke-width="6" stroke-linecap="round"/>
-        <line x1="50" y1="75" x2="50" y2="94" stroke="#E8334A" stroke-width="6" stroke-linecap="round"/>
-      </svg>
-      Signal <span class="fire">Fire</span> Aim
-    </div>
+    <div class="footer-logo">Signal <span class="fire">Fire</span> Aim</div>
     <ul class="footer-links">
       <li><a href="https://agenticatlarge.substack.com" target="_blank">Substack</a></li>
       <li><a href="https://linkedin.com/in/agenticmurphy" target="_blank">LinkedIn</a></li>
