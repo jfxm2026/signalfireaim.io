@@ -1,0 +1,49 @@
+name: Stamp signal strip date
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  stamp-date:
+    if: "!contains(github.event.head_commit.message, '[bot]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set today's real date in the signal strip
+        run: |
+          python3 - <<'PYEOF'
+          import re
+          from datetime import datetime, timezone
+
+          today = datetime.now(timezone.utc).strftime('%B %-d, %Y')
+
+          with open('index.html', 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          new_content = re.sub(
+              r'Updated [A-Za-z]+ \d{1,2}, \d{4}',
+              f'Updated {today}',
+              content
+          )
+
+          if new_content != content:
+              with open('index.html', 'w', encoding='utf-8') as f:
+                  f.write(new_content)
+              print(f"Stamped date: {today}")
+          else:
+              print("Date already correct or no match found — no change.")
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "signal-fire-aim-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add index.html
+            git commit -m "Auto-stamp correct push date [bot]"
+            git push
+          else
+            echo "No date correction needed."
+          fi

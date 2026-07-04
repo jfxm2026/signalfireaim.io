@@ -1,0 +1,43 @@
+name: Seasonal content cleanup
+
+on:
+  schedule:
+    - cron: '0 6 1 8 *'   # 06:00 UTC on August 1st every year
+  workflow_dispatch: {}    # allow manual trigger for testing
+
+jobs:
+  remove-expired-seasonal-blocks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Strip SEASONAL blocks from index.html
+        run: |
+          python3 - <<'PYEOF'
+          import re
+
+          with open('index.html', 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          patterns = [
+              r'\s*<!--\s*SEASONAL.*?-->.*?<!--\s*END SEASONAL.*?-->\s*',
+              r'\s*/\*\s*══+\s*SEASONAL.*?═+\s*\*/.*?/\*\s*══+\s*END SEASONAL BLOCK\s*══+\s*\*/\s*',
+          ]
+          for pat in patterns:
+              content = re.sub(pat, '\n', content, flags=re.DOTALL)
+
+          with open('index.html', 'w', encoding='utf-8') as f:
+              f.write(content)
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "signal-fire-aim-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add index.html
+            git commit -m "Auto-remove expired seasonal content [bot]"
+            git push
+          else
+            echo "No seasonal blocks found to remove."
+          fi
