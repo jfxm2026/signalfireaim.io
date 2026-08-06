@@ -132,22 +132,6 @@
     overflow: hidden;
   }
 
-  /* ══ SEASONAL — JULY 2026 ONLY — DELETE THIS BLOCK AFTER JULY 31 ══ */
-  .firework-burst {
-    position: absolute; top: 0; pointer-events: none;
-    width: 340px; height: 340px; border-radius: 50%;
-    background:
-      radial-gradient(circle at center, transparent 0 30%, rgba(232,51,74,0.10) 31% 32%, transparent 33% 100%),
-      radial-gradient(circle at center, transparent 0 45%, rgba(232,51,74,0.07) 46% 47%, transparent 48% 100%),
-      radial-gradient(circle at center, transparent 0 60%, rgba(232,51,74,0.05) 61% 62%, transparent 63% 100%);
-    animation: burst-fade 6s ease-in-out infinite;
-  }
-  .firework-burst.b1 { left: -60px; top: -80px; animation-delay: 0s; }
-  .firework-burst.b2 { right: -80px; top: -40px; animation-delay: 2s; }
-  .firework-burst.b3 { left: 45%; top: -140px; animation-delay: 4s; }
-  @keyframes burst-fade { 0%,100% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.05); } }
-  /* ══ END SEASONAL BLOCK ══ */
-
   .hero-banner h1 {
     font-family: 'DM Serif Display', serif;
     font-size: 3.6rem; line-height: 1.1;
@@ -586,10 +570,6 @@
 
   <!-- HERO BANNER — centered -->
   <div class="hero-banner">
-    <!-- SEASONAL — JULY 2026 ONLY — DELETE these 3 divs after July 31 -->
-    <div class="firework-burst b1"></div>
-    <div class="firework-burst b2"></div>
-    <div class="firework-burst b3"></div>
     <div class="eyebrow">GTM Intelligence · Agentic Era</div>
     <h1>Every crisis surfaces the people<br>who saw it <span class="fire">coming.</span></h1>
     <p class="sub">Signal Fire Aim is where identity, AI governance, and enterprise GTM collide — for CISOs, CIOs, and the people selling to them. Before the incident, not after.</p>
@@ -599,46 +579,12 @@
     </div>
   </div>
 
-  <!-- SEASONAL — JULY 2026 ONLY — DELETE THIS ENTIRE SECTION AFTER JULY 31 -->
-  <div class="section-wrap" style="padding-top:0; padding-bottom:56px;">
-    <div class="eyebrow">Independence Day · 1776</div>
-    <h2 style="font-size:1.7rem;">Four signals that led to a revolution.</h2>
-    <p class="lead" style="margin-bottom:1.5rem;">Nobody who was paying attention in 1776 was actually surprised. The signal always arrives years before the crisis — this is just the oldest example we've got.</p>
-    <div class="beats" style="grid-template-columns:repeat(4,1fr);">
-      <div class="beat" style="border-right:1px solid var(--border);">
-        <div class="beat-tag">1765</div>
-        <div class="beat-bar"></div>
-        <h3>The Stamp Act</h3>
-        <p>Taxation without representation stops being a grievance and becomes organized resistance.</p>
-      </div>
-      <div class="beat" style="border-right:1px solid var(--border);">
-        <div class="beat-tag">1770</div>
-        <div class="beat-bar"></div>
-        <h3>The Boston Massacre</h3>
-        <p>Local friction becomes a national story overnight.</p>
-      </div>
-      <div class="beat" style="border-right:1px solid var(--border);">
-        <div class="beat-tag">1773</div>
-        <div class="beat-bar"></div>
-        <h3>The Boston Tea Party</h3>
-        <p>A symbolic act draws a line that can't be walked back.</p>
-      </div>
-      <div class="beat">
-        <div class="beat-tag">1774</div>
-        <div class="beat-bar"></div>
-        <h3>The First Continental Congress</h3>
-        <p>Separate colonies start acting like one coordinated body.</p>
-      </div>
-    </div>
-  </div>
-  <!-- END SEASONAL SECTION -->
-
   <!-- SIGNAL STRIP — full width, three signals in columns -->
   <div class="signal-strip">
     <div class="signal-strip-inner">
       <div class="signal-label-col">
         <div class="signal-tag"><div class="live-pip"></div>This Week's Signal</div>
-        <p>Updated July 27, 2026<br>Agentic At Large</p>
+        <p>Updated August 5, 2026<br>Agentic At Large</p>
       </div>
       <div class="signal-item">
         <div class="signal-row">
@@ -786,6 +732,17 @@
     <p class="lead">Every article, post, and brief from Agentic At Large and Signal Fire Aim. Updated as new pieces publish.</p>
 
     <div class="articles-grid">
+      <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
+        <div>
+          <div class="article-tag">Non-Human Identity · Agentic Risk</div>
+          <div class="article-title">The Agent That Broke In: Hugging Face and the Guardrail Asymmetry</div>
+          <div class="article-desc">An autonomous AI agent breached Hugging Face's production systems with zero human direction — chaining a zero-day after commercial frontier models refused to help. Defenders got blocked by the same guardrails attackers walked around on an open-weight model. That asymmetry is the real story.</div>
+        </div>
+        <div class="article-meta">
+          <div class="article-date">August 2026</div>
+          <div class="article-platform substack">Substack</div>
+        </div>
+      </a>
       <a class="article-row" href="https://agenticatlarge.substack.com" target="_blank">
         <div>
           <div class="article-tag">Identity · Resilience</div>
