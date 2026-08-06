@@ -314,6 +314,42 @@
 
   .beat p { font-size: 0.84rem; line-height: 1.65; color: var(--text-mid); }
 
+  /* ── BEAT: NOW (Fire) ── */
+  @keyframes beat-now-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes beat-now-bar {
+    0%, 100% { width: 22px; opacity: 1; }
+    50% { width: 34px; opacity: 0.75; }
+  }
+  @keyframes beat-now-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+    50% { box-shadow: 0 -10px 24px -14px var(--red); }
+  }
+  .beat.beat-now {
+    position: relative;
+    animation: beat-now-bounce 1.8s ease-in-out infinite, beat-now-glow 1.8s ease-in-out infinite;
+  }
+  .beat.beat-now .beat-tag { position: relative; }
+  .beat.beat-now .beat-tag::after {
+    content: "";
+    display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--red); margin-left: 0.5em;
+    animation: beat-now-bounce 1.8s ease-in-out infinite;
+  }
+  .beat.beat-now .beat-bar {
+    animation: beat-now-bar 1.8s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .beat.beat-now,
+    .beat.beat-now .beat-tag::after,
+    .beat.beat-now .beat-bar {
+      animation: none;
+    }
+  }
+
   /* ── ABOUT ── */
   .about-strip {
     background: var(--bg-section);
@@ -664,7 +700,7 @@
         <h3>Identity breaks. Everything stops.</h3>
         <p>When the IdP goes down, authentication stops. Revenue stops. Operations stop. Manual failover takes hours. AI agents make the blast radius catastrophic.</p>
       </div>
-      <div class="beat">
+      <div class="beat beat-now">
         <div class="beat-tag">02 — Fire</div>
         <div class="beat-bar"></div>
         <h3>Continuity is the new category.</h3>
