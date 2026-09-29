@@ -141,6 +141,11 @@
 
   .hero-banner h1 .fire { color: var(--red); font-style: italic; }
 
+  .hero-banner .hero-line { font-size: 1.15rem; line-height: 1.5; color: var(--text); max-width: 640px; margin: 0 auto 1rem; font-weight: 500; }
+  .sfa-alert { background: #b91c1c; color: #fff; padding: 14px 20px; text-align: center; font-size: 0.95rem; font-weight: 500; line-height: 1.45; }
+  .sfa-alert strong { letter-spacing: 0.08em; margin-right: 8px; }
+  .sfa-alert a { color: #fff; text-decoration: underline; margin-left: 8px; }
+  .sfa-alert[hidden] { display: none; }
   .hero-banner .sub {
     font-size: 1rem; line-height: 1.75; color: var(--text-mid);
     max-width: 520px; margin: 0 auto 2rem;
@@ -604,10 +609,16 @@
 <!-- ══════════════ HOME ══════════════ -->
 <div id="page-home" class="page active">
 
+  <!-- RED NEWS BANNER: hidden by default. Remove the hidden attribute and fill in the text/link when the daily IAM briefing flags glaring news. -->
+  <div class="sfa-alert" id="sfa-alert" role="alert" hidden>
+    <strong>BREAKING</strong><span id="sfa-alert-text">[one-sentence news update]</span><a id="sfa-alert-link" href="#" target="_blank">Read more</a>
+  </div>
+
   <!-- HERO BANNER — centered -->
   <div class="hero-banner">
     <div class="eyebrow">GTM Intelligence · Agentic Era</div>
     <h1>Every crisis surfaces the people<br>who saw it <span class="fire">coming.</span></h1>
+    <p class="hero-line">Agents are logged in as you. Governments are deciding what that means. We track both, every week.</p>
     <p class="sub">Signal Fire Aim is where identity, AI governance, and enterprise GTM collide — for CISOs, CIOs, and the people selling to them. Before the incident, not after.</p>
     <div class="hero-actions">
       <a href="https://agenticatlarge.substack.com" target="_blank" class="btn btn-red">Get the Weekly Brief</a>
@@ -647,8 +658,10 @@
   <div class="logo-strip">
     <div class="logo-strip-label">The landscape this covers</div>
     <div class="logo-strip-row">
-      <span class="logo-pill">Rubrik</span>
+      <span class="logo-pill">Solo.io</span>
+      <span class="logo-pill">U4A.ai</span>
       <span class="logo-pill">Strata Identity</span>
+      <span class="logo-pill">Rubrik</span>
       <span class="logo-pill">Anthropic</span>
       <span class="logo-pill">ITU · United Nations</span>
       <span class="logo-pill">Okta</span>
@@ -656,7 +669,6 @@
       <span class="logo-pill">CrowdStrike</span>
       <span class="logo-pill">SMB</span>
       <span class="logo-pill">UMA 2.0</span>
-      <span class="logo-pill">U4A.ai</span>
       <span class="logo-pill">On-Premises</span>
     </div>
   </div>
@@ -726,7 +738,7 @@
         <div class="eyebrow">About</div>
         <h2>Written by someone who saw this coming eight months ago.</h2>
         <p>Signal Fire Aim is the GTM intelligence layer for the agentic era — covering identity governance, AI security, and enterprise technology for CISOs, CIOs, and the people selling to them.</p>
-        <p>Published by James Murphy under the Agentic At Large brand. Eight months tracking Strata Identity, Maverics, and the non-human identity explosion before the Rubrik acquisition made it enterprise news.</p>
+        <p>Published by James Murphy under the Agentic At Large brand. I called identity the control plane early, tracking Strata Identity, Maverics, and the non-human identity explosion before the Rubrik acquisition made it enterprise news. Now I follow who is building the controls, from Solo.io's agent governance stack to UMA for Agents, and how governments from Brussels to Canberra are deciding who is accountable.</p>
         <div class="pullquote">
           <p>"Every crisis eventually surfaces the people who saw it coming."</p>
           <cite>— The Signal Fire Aim editorial thesis</cite>
@@ -1009,7 +1021,7 @@
         <div class="contact-card-body">
           <div class="contact-card-icon">🔥</div>
           <h3>Signal Fire Aim LLC</h3>
-          <p>GTM intelligence, content strategy, and thought leadership for the agentic era. Based in Connecticut. Covering Rubrik, Strata Identity, Anthropic, and the enterprise security landscape.</p>
+          <p>GTM intelligence, content strategy, and thought leadership for the agentic era. Based in Connecticut. Covering Solo.io, Strata Identity, Rubrik, Anthropic, and the enterprise security landscape.</p>
           <a href="https://mail.google.com/mail/?view=cm&to=james@signalfireaim.io" target="_blank" class="contact-link">Work with James →</a>
         </div>
       </div>
