@@ -142,7 +142,7 @@
   .hero-banner h1 .fire { color: var(--red); font-style: italic; }
 
   .hero-banner .hero-line { font-size: 1.15rem; line-height: 1.5; color: var(--text); max-width: 640px; margin: 0 auto 1rem; font-weight: 500; }
-  .sfa-alert { background: #b91c1c; color: #fff; padding: 14px 20px; text-align: center; font-size: 0.95rem; font-weight: 500; line-height: 1.45; }
+  .sfa-alert { margin-top: 58px; position: relative; z-index: 150; background: #b91c1c; color: #fff; padding: 14px 20px; text-align: center; font-size: 0.95rem; font-weight: 500; line-height: 1.45; }
   .sfa-alert strong { letter-spacing: 0.08em; margin-right: 8px; }
   .sfa-alert a { color: #fff; text-decoration: underline; margin-left: 8px; }
   .sfa-alert[hidden] { display: none; }
@@ -599,6 +599,7 @@
     <ul class="nav-links">
       <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
       <li><a onclick="showPage('articles')" id="nav-articles">Articles</a></li>
+      <li><a href="global-ai-watch.html" id="nav-watch">Global AI Watch</a></li>
       <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
       <li><a href="https://agenticatlarge.substack.com" target="_blank" onclick="showPage('home')" class="nav-cta">Get the Brief</a></li>
     </ul>
@@ -606,13 +607,13 @@
 </nav>
 
 
+<!-- RED NEWS BANNER: shown automatically when alert.json has "active": true -->
+<div class="sfa-alert" id="sfa-alert" role="alert" hidden>
+  <strong>BREAKING</strong><span id="sfa-alert-text"></span><a id="sfa-alert-link" href="#" target="_blank">Read more</a>
+</div>
+
 <!-- ══════════════ HOME ══════════════ -->
 <div id="page-home" class="page active">
-
-  <!-- RED NEWS BANNER: hidden by default. Remove the hidden attribute and fill in the text/link when the daily IAM briefing flags glaring news. -->
-  <div class="sfa-alert" id="sfa-alert" role="alert" hidden>
-    <strong>BREAKING</strong><span id="sfa-alert-text">[one-sentence news update]</span><a id="sfa-alert-link" href="#" target="_blank">Read more</a>
-  </div>
 
   <!-- HERO BANNER — centered -->
   <div class="hero-banner">
@@ -623,6 +624,7 @@
     <div class="hero-actions">
       <a href="https://agenticatlarge.substack.com" target="_blank" class="btn btn-red">Get the Weekly Brief</a>
       <a onclick="showPage('articles')" class="btn btn-outline">Read the Articles →</a>
+      <a href="global-ai-watch.html" class="btn btn-outline">Global AI Watch →</a>
     </div>
   </div>
 
@@ -1066,6 +1068,18 @@
     if (navEl) navEl.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+</script>
+
+<script>
+  // Red news banner: driven by alert.json. Set "active": true with text and link to show it on every page.
+  fetch('alert.json',{cache:'no-store'}).then(r=>r.json()).then(a=>{
+    if(!a.active||!a.text) return;
+    var el=document.getElementById('sfa-alert'); if(!el) return;
+    document.getElementById('sfa-alert-text').textContent=a.text;
+    var l=document.getElementById('sfa-alert-link');
+    if(a.link){l.href=a.link;}else{l.style.display='none';}
+    el.hidden=false;
+  }).catch(function(){});
 </script>
 
 </body>
