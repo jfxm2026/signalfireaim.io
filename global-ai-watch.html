@@ -47,7 +47,9 @@
   th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
   th{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
   td.s{font-family:var(--f-mono);text-align:center;width:64px;font-variant-numeric:tabular-nums}
-  .s1{background:var(--h1)}.s2{background:var(--h2)}.s3{background:var(--h3)}.s4{background:var(--h4)}.s5{background:var(--h5);color:var(--h5t)}
+  .s1{background:#991b1b;color:#fff}.s2{background:#dc2626;color:#fff}.s3{background:#facc15;color:#3b2f00}.s4{background:#86efac;color:#052e16}.s5{background:#22c55e;color:#052e16}
+  .scale{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .scale span{display:inline-block;min-width:28px;text-align:center;padding:2px 8px;border-radius:4px;font-family:var(--f-mono);font-weight:500}
   .note{font-size:12.5px;color:var(--muted);max-width:80ch}
   .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
   .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
@@ -110,6 +112,7 @@
 <section>
   <h2>Government standpoints</h2>
   <p class="lede">Scores: 1 is low, 5 is high. "Binding safety" means legally enforceable duties on frontier developers.</p>
+    <div class="scale" aria-label="Score colors">Scale: <span class="s1">1</span><span class="s2">2</span><span class="s3">3</span><span class="s4">4</span><span class="s5">5</span> red is low, yellow is middle, green is high</div>
   <div class="scroll"><table>
     <thead><tr><th>Jurisdiction</th><th>Binding safety</th><th>Governance formality</th><th>Pro-growth tilt</th><th>Focus and latest signal</th></tr></thead>
     <tbody>
