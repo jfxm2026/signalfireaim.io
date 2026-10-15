@@ -10,8 +10,8 @@ Nothing goes live on either site without an APPROVE reply from james@signalfirea
 3. **Mondays 6:59 AM ET — Global AI Watch refresh**. Saves the full proposed `global-ai-watch.html` to Drive and
    emails `APPROVE: Global AI Watch - <date>` with the Drive link. Never pushes.
 4. **Hourly 7 AM–9 PM ET — Publisher** checks Gmail for James's replies on `APPROVE:` threads from the last 3 days.
-   - Reply contains "approve" (any case) → apply that thread's WEBSITE UPDATES (plus any edits in the reply), push to `main`
-     of both repos, then reply on the thread `PUBLISHED: <what changed>` with the live links.
+   - Reply contains "approve" (any case) → apply that thread's WEBSITE UPDATES (plus any edits in the reply), push to the `staging` branch
+     of both repos (`publish-approved.yml` then takes `staging` live on `main`), then reply on the thread `PUBLISHED: <what changed>` with the live links.
    - Reply has edits but no "approve" → revise, reply on the thread with the revised block, wait for APPROVE.
    - Already answered with `PUBLISHED:` or `REVISED:` after James's latest reply → skip (never publish twice).
 
