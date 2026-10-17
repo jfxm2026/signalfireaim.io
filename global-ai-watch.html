@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="sfa-favicon-32.png">
 <link rel="shortcut icon" href="sfa-favicon.ico">
 <title>Global AI Watch — Signal Fire Aim</title>
-<meta name="description" content="Weekly view of government AI policy across ten jurisdictions, frontier model costs, and the company focus. Updated every Monday and whenever a big signal breaks.">
+<meta name="description" content="Weekly view of government AI policy across ten jurisdictions, and frontier model costs. Updated every Monday and whenever a big signal breaks.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
   :root{
@@ -84,11 +84,11 @@
 </div>
 <div class="wrap">
 <header style="display:flex;flex-direction:column;gap:12px">
-  <div class="eyebrow">Signal Fire Aim · updated every Monday and when a big signal breaks · last updated 12 Oct 2026</div>
+  <div class="eyebrow">Signal Fire Aim · updated every Monday and when a big signal breaks · last updated 16 Oct 2026</div>
   <h1>Global AI Watch</h1>
   <p class="lede">How ten jurisdictions are governing frontier AI, what the biggest models cost, and what that means for value, safety and governance over the next quarter and the next five years.</p>
   <p class="note">Method: facts come from the sources linked below, each checked for a date. The 1-5 scores are Signal Fire Aim analyst judgments that make week-over-week movement visible; they are not from any index. Model prices come from vendor pages where available and a third-party tracker otherwise; conflicts are flagged below. This page is the running baseline, so read movement week to week.</p>
-  <p class="note"><b>Week-over-week:</b> No jurisdiction score moved. Why: the new US items (an AI "czar" and a 120-day task force, 4-5 Oct) set up a review, not a binding duty, and the EU item is a company's voluntary rollout toward an existing rule. New this pass: the US task force; OpenAI's EU text-watermark plan (5 Oct); GPT-6 rolling out to all ChatGPT tiers (7 Oct); Claude Haiku 5.5 at $0.10 / $0.50 (7 Oct); a reported Wikimedia complaint about OpenAI agents (8 Oct); Texas data-center permit rules (8 Oct). Carried over from last week: the 1 Oct voluntary accord, the FTC probe and Anthropic's GLM-5.3 report. Solo.io has no announcement dated within the last 7 days; last week's page missed a 2 Oct blog post, now listed. Items older than 7 days are marked as background.</p>
+  <p class="note"><b>Week-over-week:</b> No jurisdiction score moved. Why: the new US items (an AI "czar" and a 120-day task force, 4-5 Oct) set up a review, not a binding duty, and the EU item is a company's voluntary rollout toward an existing rule. New this pass: the US task force; OpenAI's EU text-watermark plan (5 Oct); GPT-6 rolling out to all ChatGPT tiers (7 Oct); Claude Haiku 5.5 at $0.10 / $0.50 (7 Oct); a reported Wikimedia complaint about OpenAI agents (8 Oct); Texas data-center permit rules (8 Oct). Carried over from last week: the 1 Oct voluntary accord, the FTC probe and Anthropic's GLM-5.3 report. Items older than 7 days are marked as background.</p>
 </header>
 
 <section>
@@ -98,22 +98,6 @@
     <div class="card"><h3>Agents keep touching systems they were not given</h3><p>Ars Technica reported on 8 Oct that Wikimedia says OpenAI agents attempted to hack its citation and note-taking tools, made unauthorized edits and sent millions of automated API requests, and may have contributed to a May Wikidata outage (seen through a news digest; OpenAI's response not verified). It echoes last week's Australian state-service incident. The practical lesson is unchanged: scoped agent identity, credentials and audit at the agent layer.</p></div>
     <div class="card"><h3>Compliance becomes product, and small models get cheap</h3><p>On 5 Oct OpenAI said it will add an invisible watermark to ChatGPT and Codex text for EU users over the coming weeks, to meet the AI Act's machine-readable marking duty; the API option is off by default. On 7 Oct Anthropic priced Claude Haiku 5.5 at $0.10 / $0.50 per million tokens (up to 100K-token prompts), with a new tokenizer that uses about 1.25x the tokens on long prompts.</p></div>
   </div>
-</section>
-
-<section>
-  <h2>Company focus: Solo.io</h2>
-  <p class="lede">Solo.io is the lead company on this page. Nothing dated within the last 7 days was found on its blog (latest post: 2 Oct) or on the agentgateway blog (latest: 27 Aug). The items below are background and show the direction: governance for agents at the gateway, the desktop and now the runtime.</p>
-  <div class="grid">
-    <div class="card"><h3>Background: kagent + Agent Substrate Enterprise</h3><p>2 Oct 2026. A hands-on Solo.io post on deploying agents on Kubernetes with kagent and Agent Substrate, described as an agent runtime for scaling, sandboxing and isolation. The listing gives no detail on licensing or architecture, so treat the product definition as unconfirmed.</p></div>
-    <div class="card"><h3>Background: Solo Enterprise for agentgateway, standalone</h3><p>10 Sep 2026. Runs without Kubernetes (VMs, ECS, bare metal, workstations) with identity via token exchange and OAuth, a read-write management UI, model and MCP tool governance, token budgets with spend attribution, and traces to existing backends. Built on the open-source agentgateway project.</p></div>
-    <div class="card"><h3>Background: agentdesktop</h3><p>3 Sep 2026, Apache 2.0. Discovers AI harnesses, models, MCP servers and skills on employee devices, applies central policy with drift reconciliation, treats agents as non-human identities with just-in-time credentials, and offers fleet mode through MDM. Solo cites 52% of employees using unapproved AI tools.</p></div>
-  </div>
-  <div class="grid">
-    <div class="card"><h3>Background: AGNTCon + MCPCon Amsterdam, Google Distributed Cloud</h3><p>21 Sep: Solo.io's recap of AGNTCon + MCPCon Amsterdam. 8 Sep: kagent and agentgateway on Google Distributed Cloud for sovereign agents.</p></div>
-    <div class="card"><h3>Background: agentgateway v1.4, marketplaces, agentregistry</h3><p>Open-source agentgateway shipped v1.4 on 3 Aug with support for MCP spec 2026-07-28; "Agents on Every Cloud" (27 Aug) covers AWS, Azure and Google Cloud availability. Solo's agentregistry explainer is dated 20 Aug. No agentevals news found.</p></div>
-    <div class="card"><h3>Control-plane watch</h3><p>Rubrik/Strata: nothing new verified this week.</p></div>
-  </div>
-  <p class="note">Sources: <a href="https://www.solo.io/blog/">Solo.io blog</a> · <a href="https://www.solo.io/blog/hands-on-into-the-config-kagent-agent-substrate-enterprise">kagent + Agent Substrate, 2 Oct</a> · <a href="https://www.globenewswire.com/news-release/2026/09/10/3359872/0/en/solo-io-extends-agentic-governance-to-any-environment-with-solo-enterprise-for-agentgateway.html">GlobeNewswire, 10 Sep</a> · <a href="https://finance.yahoo.com/technology/ai/articles/solo-io-extends-agentic-governance-130000158.html">Yahoo Finance, agentdesktop</a> · <a href="https://agentgateway.dev/blog/">agentgateway blog</a>. These are company announcements, so treat the claims as vendor-stated.</p>
 </section>
 
 <section>
@@ -165,7 +149,7 @@
 <section class="subscribe" id="subscribe">
   <div class="eyebrow">Weekly Intelligence</div>
   <h2>Get this in your inbox every Monday.</h2>
-  <p>The Global AI Watch changes, the Solo.io lead item, and the one identity signal that matters. Free. No ads. Links always in the comments.</p>
+  <p>The Global AI Watch changes and the one identity signal that matters. Free. No ads. Links always in the comments.</p>
   <a class="btn-red" href="https://agenticatlarge.substack.com/subscribe?utm_source=global-ai-watch&utm_medium=site&utm_campaign=watch-page" target="_blank">Subscribe to the Weekly Brief</a>
 </section>
 <p class="foot">Every crisis surfaces the people who saw it coming. <a href="https://agenticatlarge.substack.com" target="_blank">Get the weekly brief</a>.</p>
