@@ -20,7 +20,7 @@ Nothing goes live on either site without an APPROVE reply from james@signalfirea
 |---|---|---|
 | Red BREAKING banner | signalfireaim.io `alert.json` | `{"active": true, "text", "link", "updated"}`; set `"active": false` once older than ~3 days |
 | Signal strip / article rows | signalfireaim.io `index.html` | Edit only the named strip items or rows. The date stamps itself on push. |
-| Global AI Watch | signalfireaim.io `global-ai-watch.html` | Apply the approved row/price/Solo.io edits, or the full approved file from Drive |
+| Global AI Watch | signalfireaim.io `global-ai-watch.html` | Apply the approved row/price edits, or the full approved file from Drive |
 | LTG "Latest signal" | signalfireaim.io `latest.json` (lucastaylorgroup.com reads it from https://signalfireaim.io/latest.json) | `{"active": true, "text": "<one line>", "link": "<signalfireaim.io url>", "date": "<Mon D, YYYY>"}` |
 
 ## Standing rules (check every publish)
