@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="sfa-favicon-32.png">
+<link rel="shortcut icon" href="sfa-favicon.ico">
+<title>Global AI Watch — Signal Fire Aim</title>
+<meta name="description" content="Weekly view of government AI policy across ten jurisdictions, and frontier model costs. Updated every Monday and whenever a big signal breaks.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+  :root{
+    --red:#E8334A; --red-hover:#cc2a3e; --text:#222; --text-mid:#707070;
+    --bg:#ffffff; --surface:#ffffff; --ink:#222222; --ink2:#4a4a4a; --muted:#8a8a8a; --rule:#ececec; --accent:#E8334A;
+    --us:#1d4ed8; --cn:#b45309; --oth:#6b7280;
+    --h1:#fdecef; --h2:#f9cdd4; --h3:#f29aa8; --h4:#ec6479; --h5:#E8334A; --h5t:#ffffff;
+    --f-display:'DM Serif Display',Georgia,serif; --f-body:'Inter',system-ui,sans-serif; --f-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-inline:16px;padding-block:88px 64px}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);border-bottom:1px solid #f2f2f2;height:58px}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 1rem;height:100%;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:var(--f-display);font-size:1.25rem;color:var(--text);text-decoration:none}
+  .nav-logo .fire{color:var(--red);font-style:italic}
+  .nav-links{display:flex;gap:.25rem;list-style:none;margin:0;padding:0;align-items:center;flex-wrap:wrap}
+  .nav-links a{font-size:.85rem;color:var(--text-mid);text-decoration:none;padding:.4rem .7rem;border-radius:6px}
+  .nav-links a:hover{color:var(--text);background:#f8f8f8}
+  .nav-links a.active{color:var(--text);font-weight:600}
+  .nav-cta{background:var(--red);color:#fff!important;font-weight:600}
+  .nav-cta:hover{background:var(--red-hover)!important}
+  .sfa-alert{margin:-88px -16px 32px;padding:78px 20px 14px;background:#b91c1c;color:#fff;text-align:center;font-size:.95rem;font-weight:500;line-height:1.45;position:relative;z-index:150}
+  .sfa-alert strong{letter-spacing:.08em;margin-right:8px}
+  .sfa-alert a{color:#fff;text-decoration:underline;margin-left:8px}
+  .sfa-alert[hidden]{display:none}
+  .wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+  h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;line-height:1.15}
+  h1{font-size:clamp(32px,6vw,46px)} h2{font-size:28px} h3{font-size:19px}
+  p{margin:0;max-width:68ch} .lede{color:var(--ink2);font-size:17px}
+  .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  section{display:flex;flex-direction:column;gap:16px;min-width:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--ink2)}
+  .scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:760px;font-size:13.5px}
+  th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+  th{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+  td.s{font-family:var(--f-mono);text-align:center;width:64px;font-variant-numeric:tabular-nums}
+  .s1{background:#991b1b;color:#fff}.s2{background:#dc2626;color:#fff}.s3{background:#facc15;color:#3b2f00}.s4{background:#86efac;color:#052e16}.s5{background:#22c55e;color:#052e16}
+  .scale{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .scale span{display:inline-block;min-width:28px;text-align:center;padding:2px 8px;border-radius:4px;font-family:var(--f-mono);font-weight:500}
+  .note{font-size:12.5px;color:var(--muted);max-width:80ch}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  .bars{display:flex;flex-direction:column;gap:6px}
+  .row{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px;align-items:center;font-size:13px}
+  .row .t{position:relative;height:20px}
+  .row .b{height:16px;border-radius:0 4px 4px 0;position:absolute;left:0;top:2px;min-width:2px}
+  .row .v{position:absolute;top:0;font-family:var(--f-mono);font-size:12px;color:var(--ink2);padding-left:6px;white-space:nowrap}
+  .quote{border-left:3px solid var(--accent);padding:4px 0 4px 14px;font-family:var(--f-display);font-size:18px}
+  a{color:var(--accent)}
+  .subscribe{background:#fff8f9;border:1px solid rgba(232,51,74,.15);border-radius:10px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .subscribe h2{font-size:26px}
+  .btn-red{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:.75rem 1.4rem;border-radius:8px;font-size:.95rem}
+  .btn-red:hover{background:var(--red-hover)}
+  .foot{border-top:1px solid var(--rule);padding-top:20px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Signal <span class="fire">Fire</span> Aim</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html">Articles</a></li>
+      <li><a href="global-ai-watch.html" class="active">Global AI Watch</a></li>
+      <li><a href="https://agenticatlarge.substack.com" target="_blank" class="nav-cta">Get the Brief</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="sfa-alert" id="sfa-alert" role="alert" hidden>
+  <strong>BREAKING</strong><span id="sfa-alert-text"></span><a id="sfa-alert-link" href="#" target="_blank">Read more</a>
+</div>
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:12px">
+  <div class="eyebrow">Signal Fire Aim · updated every Monday and when a big signal breaks · last updated 5 Nov 2026</div>
+  <h1>Global AI Watch</h1>
+  <p class="lede">How ten jurisdictions are governing frontier AI, what the biggest models cost, and what that means for value, safety and governance over the next quarter and the next five years.</p>
+  <p class="note">Method: facts come from the sources linked below, each checked for a date. The 1-5 scores are Signal Fire Aim analyst judgments that make week-over-week movement visible; they are not from any index. Model prices come from vendor pages where available and a third-party tracker otherwise; conflicts are flagged below. This page is the running baseline, so read movement week to week.</p>
+  <p class="note"><b>Week-over-week (5 Nov 2026):</b> No jurisdiction score moved. Why: the new items are local votes, standards guidance and company filings, not binding national rules. New this pass: US local data-center ballot results (3-4 Nov); Brent oil near $104 a barrel (4 Nov); Anthropic's amended S-1 (2 Nov); NIST design tenets for agent identity (27 Oct, reported 3 Nov); Hong Kong's Project SAGE for AI agents in finance (2 Nov); a Gartner agent-management Magic Quadrant (27 Oct, vendor-reported 3 Nov). The 16 Oct items (US AI czar task force, OpenAI EU watermarking, GPT-6 rollout, Haiku 5.5 pricing, Wikimedia complaint, Texas permit rules) are now background. Several figures below come from a single secondary source and are flagged.</p>
+</header>
+
+<section>
+  <h2>The read this week</h2>
+  <div class="grid">
+    <div class="card"><h3>Voters put limits on data centers</h3><p>At local elections on 3 Nov, voters in several US states mostly sided against data-center projects. One tracker, Data Centers on the Ballot, counts 45 measures: 33 restricting data centers won, 6 more were leading, 1 failed (Harwood, North Dakota) and 5 had no posted result; a second tracker counts 46 measures across 10 states, so counts differ (Tom's Hardware, 4 Nov 2026; CNBC headline, 4 Nov 2026, page not read). Voters in Piqua, Ohio and Yukon, Oklahoma also recalled officials who had backed data-center bans. Direction: AI's biggest governance fights are moving to the local grid, land and power bill.</p></div>
+    <div class="card"><h3>Energy and compute bills: oil near $104, Anthropic's filing</h3><p>Brent traded near $104.16 and WTI near $96.28 a barrel on 4 Nov, intraday quotes rather than settlements, after prices dipped on US-Iran diplomacy and recovered (5paisa, 4 Nov 2026). Anthropic's amended S-1 (2 Nov) reports about $17 billion of revenue for the quarter ended 30 Sep and about $895 billion of purchase and lease commitments, about $214 billion of which carry termination rights; the IPO date is not confirmed and no price range has been disclosed (FinanceFeeds, 3 Nov 2026, summarizing the filing; not read at source). Cost lesson: compute commitments and energy prices sit under every AI price list. Not investment advice.</p></div>
+    <div class="card"><h3>Agent identity gets standards and regulators</h3><p>NIST's cybersecurity center published design tenets for agent identity on 27 Oct, including: each agent is an accountable identity traceable to the person who launched it; access is minimal, temporary and revocable; humans step in as stakes rise; and actions leave a tamper-evident record. NIST says current standards do not yet meet every tenet (Biometric Update, 3 Nov 2026, reporting NIST). On 2 Nov the Hong Kong Monetary Authority launched Project SAGE, a governance framework for AI agents in financial services, with first results expected in 9 to 12 months (Caixin Global, 2 Nov 2026). A vendor survey found 83% of organizations run AI coding agents no one formally approved (Help Net Security, 4 Nov 2026). Microsoft says it was named a Leader in Gartner's first Magic Quadrant for AI Agent Management Platforms; Gartner does not endorse any vendor (Microsoft Security Blog, 3 Nov 2026).</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Government standpoints</h2>
+  <p class="lede">Scores: 1 is low, 5 is high. "Binding safety" means legally enforceable duties on frontier developers.</p>
+  <div class="scale" aria-label="Score colors">Scale: <span class="s1">1</span><span class="s2">2</span><span class="s3">3</span><span class="s4">4</span><span class="s5">5</span> red is low, yellow is middle, green is high</div>
+  <div class="scroll"><table>
+    <thead><tr><th>Jurisdiction</th><th>Binding safety</th><th>Governance formality</th><th>Pro-growth tilt</th><th>Focus and latest signal</th></tr></thead>
+    <tbody>
+    <tr><td><b>EU</b></td><td class="s s4">4</td><td class="s s5">5</td><td class="s s2">2</td><td>Rulebook first. Digital Omnibus (Reg. 2026/1744) in force 27 Jul 2026: high-risk duties delayed to 2 Dec 2027 / 2 Aug 2028, watermarking grace to 2 Dec 2026, new bans on AI-generated CSAM and non-consensual intimate content, AI Office powers over GPAI providers expanded.<br><i>Changed this week: OpenAI announced on 5 Oct that it will watermark ChatGPT and Codex text for EU users, a sign providers are preparing for the marking duty (<a href="https://openai.com/index/eu-text-provenance/">OpenAI</a>). No new EU act verified. Background: 1 Sep information requests to 30+ AI companies (<a href="https://www.aljazeera.com/news/2026/9/2/us-pushes-looser-approach-to-ai-regulation-while-eu-pushes-new-law">Al Jazeera</a>). Scores unchanged.</i></td></tr>
+    <tr><td><b>UK</b></td><td class="s s2">2</td><td class="s s3">3</td><td class="s s4">4</td><td>Voluntary and security-led. The AI Security Institute tests models with developers before release. The Cyber Security and Resilience Bill targets AI users, not vendors; Lords are pressing for "red lines" the government rejected.<br><i>Changed this week: nothing new verified in the last 7 days. Background: the private member's bill to prohibit superintelligence passed first reading on 8 Sep with no formal government position; second reading is set for 13 Nov (<a href="https://westminsterbrief.co.uk/archive/debate/8-september-2026/artificial-superintelligence-b139">Westminster Brief</a>). Scores unchanged.</i></td></tr>
+    <tr><td><b>USA</b></td><td class="s s2">2</td><td class="s s2">2</td><td class="s s5">5</td><td>Federal push to preempt states. EO 14365 (Dec 2025) directs DOJ to challenge state laws; the preemption bill is still a discussion draft with 200+ state lawmakers opposed. California SB 53 is live and under a second compliance dispute. Colorado rewrote its act, effective 1 Jan 2027.<br><i>Changed this week: Jay Clayton named "AI czar" to lead a "Super Intelligence Force" with the FTC chair and others, 120 days to recommend Washington's role (<a href="https://www.theneurondaily.com/p/trump-named-an-ai-czar">The Neuron, 5 Oct</a>; single outlet, no order text seen). Texas new data-center permit rules took effect 8 Oct, with a $100,000 study fee and $50,000-per-MW deposit (<a href="https://a16z.com/why-texas-is-making-data-centers-wait/">a16z</a>, via a news digest). Carried over: the 1 Oct voluntary accord and the 30 Sep FTC probe (<a href="https://www.semafor.com/article/09/30/2026/ftc-probes-openai-anthropic-and-metr">Semafor</a>). Scores unchanged: a task force is a review, not a duty.</i></td></tr>
+    <tr><td><b>China</b></td><td class="s s3">3</td><td class="s s4">4</td><td class="s s5">5</td><td>Dense sectoral rules (generative AI, algorithms, deepfakes, labeling) plus the "AI Plus" plan: 70% penetration in key sectors by 2027, 90% by 2030. Governance serves state control and industrial scale.<br><i>Changed this week: no new binding rule or Chinese model release verified in the last 7 days. Background: Anthropic's 1 Oct report on Zhipu's GLM-5.3 (<a href="https://thenextweb.com/news/glm-5-3-cyber-exploits-mythos-anthropic-safeguards">TNW</a>); Alibaba's Qwen 4 tiers (22 Sep) still have no published price. Scores unchanged.</i></td></tr>
+    <tr><td><b>UAE</b></td><td class="s s2">2</td><td class="s s3">3</td><td class="s s5">5</td><td>Capital and compute. MGX targets $100B in assets, Stargate UAE with OpenAI, US chip access tied to G42 distancing from China. Goal: 20% of non-oil GDP from AI by 2031. IFM's K2 Horizon Fleet is an open-model release under Apache 2.0.<br><i>Changed this week: no new UAE policy verified. An Asia Times analysis dated 12 Oct says Alibaba Cloud expanded UAE plans in September while US access to top Nvidia chips stays conditioned on security safeguards and no diversion to China (<a href="https://asiatimes.com/2026/10/us-china-race-is-on-for-the-gulfs-ai-future/">Asia Times</a>; analysis, not a new act). Scores unchanged.</i></td></tr>
+    <tr><td><b>Other Gulf</b></td><td class="s s1">1</td><td class="s s2">2</td><td class="s s5">5</td><td>Same oil-to-compute playbook (Saudi Arabia and neighbors) with data-security and localization rules rather than model safety law.<br><i>Changed this week: nothing new verified for Saudi Arabia or Qatar. The same 12 Oct analysis reports Chinese cloud tie-ups in Saudi Arabia (BytePlus with Mobily, Tencent Cloud, a planned Huawei region) alongside HUMAIN's US-supplied compute, and no recent Qatari item. Scores unchanged.</i></td></tr>
+    <tr><td><b>Israel</b></td><td class="s s2">2</td><td class="s s3">3</td><td class="s s4">4</td><td>2026 national AI strategy: niches over scale (cyber, fintech, health, physical AI), regulatory sandboxes, standards work through ISO, OECD and UN, and alliance access to chips ("Pax Silica"). National supercomputer run by Nebius. Very high Claude usage per capita.<br><i>Changed this week: nothing new verified. Scores unchanged.</i></td></tr>
+    <tr><td><b>Russia</b></td><td class="s s3">3</td><td class="s s3">3</td><td class="s s3">3</td><td>Control-first. The 2026 law defines "sovereign" and "national" AI that must run in Russian data centers and follow state speech rules (a policy tracker lists Federation Council adoption on 17 Jul 2026 and entry into force on 1 Mar 2027; earlier coverage said September, so treat the date as conflicting). Constraints: chip imports down 84% in 2024, Sberbank seeking Chinese processors for GigaChat. Export pitch to Africa, Asia and Latin America.<br><i>Changed this week: nothing new verified. Scores unchanged.</i></td></tr>
+    <tr><td><b>Hong Kong</b></td><td class="s s2">2</td><td class="s s2">2</td><td class="s s4">4</td><td>No AI statute; the Personal Data (Privacy) Ordinance carries the load. The privacy commissioner's 2026 checks found 95% of 60 organizations use AI but only 50% have AI policies (down from 63%), and it issued guidance on agentic AI: minimum access rights, segregated environments, human in the loop. The 16 Sep 2026 Policy Address adds a Commissioner for AI, an AI+ industry committee, an expanded HKMA GenA.I. Sandbox++ and HK$300M for an AI for Welfare Lab.<br><i>Changed this week: nothing new since the 16 Sep Policy Address. Scores unchanged.</i></td></tr>
+    <tr><td><b>Australia</b></td><td class="s s3">3</td><td class="s s3">3</td><td class="s s4">4</td><td>Reversal in July 2026. The Dec 2025 National AI Plan rejected mandatory guardrails; on 15 Jul 2026 the Prime Minister announced Australian Standards for AI, an Office of AI in the PM's department, and legislation expected early 2027. Confirmed so far: mandatory rules for large AI data centres (energy, water, copyright). Scope, penalties and developer-versus-deployer duties are undefined. An AI Safety Institute and an ISO/IEC 42001 certification path already exist.<br><i>Changed this week: no new law or announcement verified. Background: OpenAI's 2 Oct disclosure of a second incident in which a model gathered non-public data from a NSW state service (<a href="https://abcnews.com/Business/openai-reveals-hack-government-agency-australia/story?id=136945837">ABC News</a>) is the case the planned 2027 legislation will be tested against. Scores unchanged.</i></td></tr>
+    </tbody></table></div>
+  <p class="note">Sources: <a href="https://www.whitecase.com/insight-alert/eu-ai-omnibus-enters-force-amending-ai-act">White &amp; Case (EU)</a> · <a href="https://www.theregister.com/security/2026/09/02/uk-cyber-bill-targets-ai-users-not-the-vendors-building-it/5293738">The Register (UK)</a> · <a href="https://casrai.org/news/federal-ai-moratorium-state-preemption-fight-2026">CASRAI (US)</a> · <a href="https://iapp.org/resources/article/global-ai-governance-china">IAPP (China)</a> · <a href="https://www.csis.org/analysis/united-arab-emirates-ai-ambitions">CSIS (UAE)</a> · <a href="https://www.vccafe.com/2026/05/07/israels-ai-2026-strategy/">VC Cafe (Israel)</a> · <a href="https://www.atlanticcouncil.org/dispatches/russia-wants-to-sell-sovereign-ai-abroad-heres-what-its-really-selling/">Atlantic Council (Russia)</a> · <a href="https://www.legal500.com/intelligence/hong-kong/privacy/hong-kong-privacy-commissioner-for-personal-data-completes-its-2026-ai-compliance-checks-findings-trends-and-the-rise-of-agentic-ai">Legal 500 (Hong Kong)</a> · <a href="https://www.info.gov.hk/gia/general/202609/16/P2026091600264.htm">HK Policy Address 2026</a> · <a href="https://compliancecouncil.com.au/insights/australia-ai-standards-july-2026-reversal-what-it-means/">Compliance Council (Australia)</a>.</p>
+</section>
+
+<section>
+  <h2>Frontier model cost, mid-October 2026</h2>
+  <p class="lede">Output price per million tokens, in US dollars. Lower is cheaper. Same-tier comparisons matter more than the ranking.</p>
+  <div class="legend"><span><i style="background:var(--us)"></i>United States</span><span><i style="background:var(--cn)"></i>China</span><span><i style="background:var(--oth)"></i>Other</span></div>
+  <div class="bars" id="bars" role="img" aria-label="Bar chart of output price per million tokens by model"></div>
+  <p class="note">Source: <a href="https://capitalandcompute.net/ai-models/">Capital and Compute tracker</a>, <a href="https://fortune.com/2026/09/22/what-ai-slowdown-openai-anthropic-release-dueling-moreaffordable-models-as-ai-price-wars-heat-up/">Fortune, 22 Sep</a> and, for Haiku, <a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison, 7 Oct</a>. New this week: Claude Haiku 5.5 at $0.50 output ($0.10 input) up to 100K-token prompts, $2.50 above that, with a tokenizer that uses about 1.25x the tokens on long prompts, so the like-for-like saving is smaller than the headline; Mistral Large 4 (France) at a $4.18 list output price, listed by the tracker with a half-price launch sale ($2.09), single source. Conflict still open: the tracker lists GPT-6 Astra at $10 / $50 as the "first frontier price rise in years" while also listing GPT-6 Sol at a halved $2 / $10, so Astra is a premium tier. OpenAI's 7 Oct GPT-6 page announces access by ChatGPT tier (Sol for Plus and above, Luna for Free and Go) and no API prices. Gemini 4 Argon ($2 / $10 intro, $4 / $20 afterward, per <a href="https://tokencost.app/blog/gemini-4-argon-pricing">TokenCost</a>) is still not on Google's own API pages, so treat as unconfirmed by Google; GLM-5.3-Flash at $0.45 is a third-party host's price, not Zhipu's. K2 Horizon Fleet (UAE) is free open weights, so it has no bar. Russian and Israeli models had no comparable public pricing; Qwen 4 has no published price.</p>
+</section>
+
+<section>
+  <h2>Weekly scorecard</h2>
+  <p class="lede">The same four lenses every week, short term (next 12 months) and long term (3-5 years).</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Lens</th><th>Short term</th><th>Long term</th></tr></thead>
+    <tbody>
+    <tr><td><b>Financial value</b></td><td>Falling prices squeeze lab margins and widen buyer choice: Haiku 5.5 is $0.10 / $0.50 against $1 / $5 for its predecessor, and cheap Chinese options ($0.30 / $1.20 for DeepSeek V4.1 Flash) cap what US labs can charge for routine work. Reports of tighter paid-plan limits (secondhand) hint at margin pressure on heavy agent use.</td><td>Value migrates to whoever owns distribution, identity and governance layers, not raw model access.</td></tr>
+    <tr><td><b>Safety</b></td><td>Mostly voluntary outside California and the EU: the 1 Oct accord adds audits and board oversight but no penalties, the FTC probe is the first enforcement-style step, and the new 120-day task force defers any rule. OpenAI says GPT-6 resists multi-turn jailbreaks better, with no metrics on the page (see the system card). Open-weight cyber capability (GLM-5.3) and agents overreaching (Wikimedia report) keep the risk concrete.</td><td>A joint call to slow frontier development was made and not followed; enforceable limits will likely arrive after an incident.</td></tr>
+    <tr><td><b>Governance</b></td><td>EU deadlines slip but AI Office powers grow and providers are building compliance features. US preemption unresolved, with a czar and task force added. Agents reaching outside systems (Australia, Wikimedia) raise the stakes. Agent identity and authorization are the practical control point.</td><td>Blocs diverge: EU rulebook, US market, China state-led, Gulf capital with US-China cloud competition, Russia closed, with Australia moving toward standards and Hong Kong relying on privacy law. Firms will need per-region policy.</td></tr>
+    <tr><td><b>Cost</b></td><td>Small-model prices keep falling, but watch hidden increases: Haiku 5.5's tokenizer uses about 1.25x the tokens and long prompts cost 5x, and Gemini 4 Argon's intro price is half its later list price. Google's Flash rate doubles on 1 Jan 2027.</td><td>Compute and energy, not model licenses, become the binding cost. Texas data-center permit fees (8 Oct) and the UAE's 5+ GW surplus by 2030 are two sides of that.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2>Next week</h2>
+  <p>This page refreshes every Monday with new scores, model releases and price moves, and one lead item per jurisdiction. A big signal gets a red banner across the site. Gaps to close first: Saudi Arabia and Qatar detail, Russian and Israeli model releases, Chinese model prices (Qwen 4), the first FTC demands, the US AI czar task force's first moves and the Anthropic IPO timetable.</p>
+</section>
+<section class="subscribe" id="subscribe">
+  <div class="eyebrow">Weekly Intelligence</div>
+  <h2>Get this in your inbox every Monday.</h2>
+  <p>The Global AI Watch changes and the one identity signal that matters. Free. No ads. Links always in the comments.</p>
+  <a class="btn-red" href="https://agenticatlarge.substack.com/subscribe?utm_source=global-ai-watch&utm_medium=site&utm_campaign=watch-page" target="_blank">Subscribe to the Weekly Brief</a>
+</section>
+<p class="foot">Every crisis surfaces the people who saw it coming. <a href="https://agenticatlarge.substack.com" target="_blank">Get the weekly brief</a>.</p>
+</div>
+<script>
+const data=[
+ ['Claude Fable 5.1 / Mythos 5.1',50,'us'],['Grok 4.7 (xAI)',6,'us'],['GPT-6 Luna',0.5,'us'],['Claude Haiku 5.5 (up to 100K prompts)',0.5,'us'],['MiMo-V2.6-Pro (Xiaomi)',0.87,'cn'],['GPT-6 Astra',50,'us'],['Claude Opus 5.5',20,'us'],
+ ['GPT-6 Sol',10,'us'],['Claude Sonnet 5.5',10,'us'],['Qwen3.8-Max-0902',6,'cn'],
+ ['Gemini 3.8 Flash',3.75,'us'],['Muse Spark 1.3 (Meta)',4.25,'us'],['DeepSeek V4.1 Flash',1.2,'cn'],
+ ['Pareto 26.9 (UK)',7.5,'oth'],['Fugu Max (Sakana, Japan)',6,'oth'],['Mistral Large 4 (France, list)',4.18,'oth'],
+ ['Gemini 4 Argon (intro, trusted testers)',10,'us'],['Gemini 4 Argon (list after intro)',20,'us'],['GLM-5.3-Flash (RunInfra host price)',0.45,'cn']
+].sort((a,b)=>b[1]-a[1]);
+const max=60, el=document.getElementById('bars');
+data.forEach(([n,v,c])=>{
+  const r=document.createElement('div');r.className='row';
+  const w=(v/max*100);
+  r.innerHTML='<div>'+n+'</div><div class="t"><div class="b" style="width:'+w+'%;background:var(--'+c+')"></div><div class="v" style="left:'+w+'%">$'+v+'</div></div>';
+  el.appendChild(r);
+});
+</script>
+
+<script>
+  // Red news banner: driven by alert.json. Set "active": true with text and link to show it on every page.
+  fetch('alert.json',{cache:'no-store'}).then(r=>r.json()).then(a=>{
+    if(!a.active||!a.text) return;
+    var el=document.getElementById('sfa-alert'); if(!el) return;
+    document.getElementById('sfa-alert-text').textContent=a.text;
+    var l=document.getElementById('sfa-alert-link');
+    if(a.link){l.href=a.link;}else{l.style.display='none';}
+    el.hidden=false;
+  }).catch(function(){});
+</script>
+</body>
+</html>
